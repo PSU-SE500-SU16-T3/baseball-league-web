@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Baseball App Create Team Page</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 58px;
+        }
+        .auto-style2 {
+            height: 234px;
+        }
+        #txtUsrName {
+            width: 238px;
+        }
+        #btnCreate {
+            margin-left: 111px;
+        }
+        #btnLogin {
+            margin-left: 0px;
+        }
+        .auto-style4 {
+            height: 100%;
+            width: 304px;
+        }
+        .auto-style5 {
+            width: 128px;
+        }
+    </style>
+</head>
+<body>
+    <table style="width: 100%;">
+        <tr>
+            <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
+        </tr>
+        <tr>
+            <td class="auto-style2">
+                <table style="width: 600px;height:100%">
+                    <tr>
+                        <td style="text-align: center; font-family: Arial; font-size: x-large" colspan="3">
+                            Create/Modify/Delete Team
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style4">
+                            Season League <select id="SlctLeague">
+                                <option></option>
+
+                            </select><br />
+                            Season <select id="SlctSeason">
+                                <option></option>
+
+                            </select><br />
+                            Division <select id="SlctDiv">
+                                <option></option>
+
+                            </select><br />
+                            Team <select id="Age1">
+                                <option></option>
+
+                            </select> <br />
+                            Ump/Field <textarea id="TextArea1" cols="20" style="height:125px"></textarea>
+                         </td>
+                        <td> < Assign Ump/Field</td>
+                        <td class="auto-style5">
+
+                            <fieldset>
+                                <legend> Avaiable Ump/Field</legend>
+                                <input type="checkbox" /> Ump/Field1<br />
+                                <input  type="checkbox" /> Ump/Field2<br />
+                                <input type="checkbox" /> Ump/Field3<br />
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+                <input id="btnCreate" type="button" value="Assign Resource" />
+            </td>
+
+        </tr>
+    </table>
+</body>
+</html>
