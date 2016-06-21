@@ -1,10 +1,10 @@
 app.factory('UserService', ['$http', '$q', function($http, $q){ 
     return {         
-        getJson: function(firstName, lastName, age) {        	
+        getJson: function(username, password, email) {        	
         	params = {
-        			'firstName': firstName,
-        			'lastName': lastName,
-        			'age': age,
+        			'username': username,
+        			'password': password,
+        			'email': email,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({

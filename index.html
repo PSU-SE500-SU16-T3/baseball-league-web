@@ -4,13 +4,16 @@
 	<body  ng-app="myApp" ng-controller="myApp-Controller">
 		<div>
 			<form ng-submit="myFunc()">
-				First Name: <input type="text" ng-model="firstName"><br>
-				Last Name: <input type="text" ng-model="lastName"><br>
-				Age: <input type="text" ng-model="age"><br>
-	
-				<input type="submit">
-				<br>
-				<input type="text" ng-model="fullName"><br>
+				Username: 	<input type="text" ng-model="username"><br><br>
+				Password: 	<input type="text" ng-model="password"><br><br>
+				Email Id: 	<input type="text" ng-model="email"><br><br>	
+				<input type="submit"><br>
+				<br>				
+				<tbody>
+					<tr>
+						<td align="center" valign="bottom" colspan="2">{{fullName}}</td>
+					</tr>
+				</tbody>
 			</form>
 		</div>
 		<script src="scripts/controllers/myApp-Controller.js"></script>
