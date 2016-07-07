@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <head>
     <title>Manager HomePage</title>
     <style type="text/css">
@@ -24,7 +25,8 @@
         }
     </style>
 </head>
-<body ng-app="ManagerHomePage">
+<body>
+<div id='content' ng-app="myApp" ng-controller="ManagerHomePage-Controller">
     <table style="width: 100%;">
         <tr>
             <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
@@ -48,7 +50,7 @@
                     </tr>
                     <tr>
                     	<td>
-                    		<input id="btnCreateLeague" type="button" value="Create New League" /><br />
+                    		<button ng-click="clicked()">Create New League</button> 
                     	</td>
                     </tr>
                 </table>
