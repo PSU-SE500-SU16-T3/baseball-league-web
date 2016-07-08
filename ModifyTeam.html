@@ -67,7 +67,7 @@
                     <tr>
                     	<td>League</td>
                     	<td>
-                    		<select ng-model="selectedLeague" ng-change="getSeason()" ng-options="league as league.name for league in leagues">
+                    		<select ng-model="selectedLeague" ng-change="getSeasons()" ng-options="league as league.name for league in leagues">
 						    	<option id="league0" value="">Select League</option>
 						    </select>
                         </td>
@@ -75,7 +75,7 @@
                     <tr>
                         <td>Season</td>
                         <td>
-                        	<select ng-model="selectedSeason" ng-change="getDivision()" ng-options="season as season.name for season in seasons">
+                        	<select ng-model="selectedSeason" ng-change="getDivisions()" ng-options="season as season.name for season in seasons">
 						    	<option id="season0" value="">Select Season</option>
 						    </select>
                         </td>
@@ -147,7 +147,8 @@
 
         </tr>
     </table>
-	<script src="scripts/controllers/myApp-Controller.js"></script>
-	<script src="scripts/services/UserService.js"></script>
+    <script src="scripts/import.js"></script>
+    <script src="scripts/services/UserService.js"></script>
+	<script src="scripts/controllers/myApp-Controller.js"></script>	
 </body>
 </html>

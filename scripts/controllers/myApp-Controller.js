@@ -1,8 +1,23 @@
-var app = angular.module('myApp', []);
-
-app.controller('myApp-Controller', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('myApp-Controller', ['$scope', 'UserService','$http', '$q', function($scope, UserService) {
+	$scope.assignedPlayers = [];
+	$scope.unassignedPlayers = [{
+	    id: 1,
+	    name: 'John'
+	  },
+	  {
+	    id: 2,
+	    name: 'Henry'
+	  },
+	  {
+	    id: 3,
+	    name: 'Fred'
+	  }];
+	$scope.leagues = [];
+	$scope.seasons = [];
+	$scope.divisions = [];
+	$scope.teams = [];
     $scope.myFunc = function () {
-    	UserService.getJson($scope.username, $scope.password,$scope.passwordConf $scope.email).then(
+    	UserService.getJson($scope.username, $scope.password,$scope.passwordConf,$scope.email).then(
 	        function(d) {
 	        	var response = d.data;
 	            $scope.fullName = response.username + " registered successfully";
@@ -28,15 +43,27 @@ app.controller('myApp-Controller', ['$scope', 'UserService', function($scope, Us
 		    }
 		}
     };
-    $scope.getSeason = function() {
+    $scope.getSeasons = function() {
     	$scope.seasons = [];
-    	$scope.seasons.push({
-    		id:'10000',name:'Summer',seasonstartdt:'',seasonenddt:'',seasonnumberofplayers:'18',leagueid:'10000'});
+    	UserService.getSeasons($scope.selectedLeague.id).then(
+	        function(d) {
+	        	$scope.seasons = [];
+	        	angular.forEach(d.data,function(season,index){
+	        		$scope.seasons.push({id:season.seasonID,name:season.seasonName});
+	             });
+	        }
+        );
     };
-    $scope.getDivision = function() {
+    $scope.getDivisions = function() {
     	$scope.divisions = [];
-    	$scope.divisions.push({
-    		id:'10000',name:'Pony',divisionminage:'10',divisionmaxage:'14',divisionnumberofplayers:'18',seasonid:'10000'});
+    	UserService.getDivisions($scope.selectedSeason.id).then(
+	        function(d) {
+	        	$scope.divisions = [];
+	        	angular.forEach(d.data,function(division,index){
+	        		$scope.divisions.push({id:division.divisionID,name:division.divisionTitle,divisionminage:division.divisionMinAge,divisionmaxage:division.divisionMaxAge,divisionnumberofplayers:division.divisionNumPlayers});
+	             });
+	        }
+        );
     };
     $scope.getTeams = function() {
     	$scope.teams = [];
@@ -44,37 +71,15 @@ app.controller('myApp-Controller', ['$scope', 'UserService', function($scope, Us
     					{id:'10001',name:'Team2',teamnumberofplayers:'10',divisionid:'10000',fieldid:''},
     					{id:'10002',name:'Team3',teamnumberofplayers:'10',divisionid:'10000',fieldid:''});
     };
-    /*angular.element(document).ready(function () {
-    	UserService.getJson().then(
-	        function(d) {
-	        	var response = d.data;
-	            alert()
-	        },
-	        function(errResponse){
-	        	console.error('Error while fetching Currencies');
-	        }
-        );
-    });*/
-    /*$scope.init = function (){
+    $scope.getLeague = function () {
     	UserService.getLeague().then(
 	        function(d) {
-	        	var response = d.data;
-	            $scope.fullName = response.username + " registered successfully";
-	        },
-	        function(errResponse){
-	        	console.error('Error while fetching Currencies');
+	        	$scope.leagues = [];
+	        	angular.forEach(d.data,function(league,index){
+	        		$scope.leagues.push({id:league.leagueID,name:league.leagueName});
+	             });
 	        }
         );
-    };*/
-   /* $scope.$on('$viewContentLoaded', function() {
-    	UserService.getLeague().then(
-    	        function(d) {
-    	        	var response = d.data;
-    	            $scope.fullName = response.username + " registered successfully";
-    	        },
-    	        function(errResponse){
-    	        	console.error('Error while fetching Currencies');
-    	        }
-            );
-    });*/
+    };
+    $scope.getLeague();
 }]);
