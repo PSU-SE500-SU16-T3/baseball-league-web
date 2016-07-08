@@ -97,6 +97,43 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
              	console.error('Error while fetching leagues');
                  return $q.reject(dd);
              });
+        },
+        getUnassignedPlayers: function(){
+        	params = {
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getUnassignedPlayers',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching UnassignedPlayers');
+                 return $q.reject(dd);
+             });
+        },
+        getAssignedPlayers: function(teamId){
+        	params = {
+        			'teamId': teamId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getAssignedPlayers',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching AnassignedPlayers');
+                 return $q.reject(dd);
+             });
         }
     }; 
 }]);
