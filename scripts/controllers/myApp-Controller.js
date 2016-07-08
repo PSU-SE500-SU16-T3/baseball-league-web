@@ -81,5 +81,5 @@ app.controller('myApp-Controller', ['$scope', 'UserService','$http', '$q', funct
 	        }
         );
     };
-    $scope.getLeague();
+    //$scope.getLeague();
 }]);
