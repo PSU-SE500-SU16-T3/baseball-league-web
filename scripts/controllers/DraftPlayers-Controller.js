@@ -80,6 +80,13 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
 	        }
         );
     };
+    $scope.submit = function() {
+    	UserService.modifyPlayers($scope.assignedPlayers).then(
+	        function(d) {
+	        	alert(d);
+	        }
+        );
+    };
     $scope.getLeague();
     $scope.getUnassignedPlayers();
 }]);

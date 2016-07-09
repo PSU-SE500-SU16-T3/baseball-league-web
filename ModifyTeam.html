@@ -54,99 +54,100 @@
     </style>
 </head>
 <body ng-app="myApp" ng-controller="DraftPlayers-Controller">
-    <table style="width: 100%;">
-        <tr>
-            <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
-        </tr>
-        <tr>
-            <td class="auto-style2">
-                <table style="width: 600px;height:100%">
-                    <tr>
-                        <td style="text-align: left; font-family: Arial; font-size: x-large" colspan="3">Draft Players</td>
-                    </tr>
-                    <tr>
-                    	<td>League</td>
-                    	<td>
-                    		<select ng-model="selectedLeague" ng-change="getSeasons()" ng-options="league as league.name for league in leagues">
-						    	<option id="league0" value="">Select League</option>
-						    </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Season</td>
-                        <td>
-                        	<select ng-model="selectedSeason" ng-change="getDivisions()" ng-options="season as season.name for season in seasons">
-						    	<option id="season0" value="">Select Season</option>
-						    </select>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>Division</td>
-                    	<td> 
-                    		<select ng-model="selectedDivision" ng-change="getTeams()" ng-options="division as division.name for division in divisions">
-						    	<option id="division0" value="">Select Division</option>
-						    </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Division Age</br>Range From</td>
-                        <td>
-                        	<input type="text" value="{{selectedDivision.divisionminage}}" disabled="disabled">
-                        </td>
-                        <td align="right">To</td>
-                        <td>
-                        	<input type="text" width="10px" value="{{selectedDivision.divisionnumberofplayers}}"  disabled="disabled">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Team</td>
-                        <td>
-                        	<select ng-model="selectedTeam" ng-change="getAssignedPlayers()" ng-options="team as team.name for team in teams">
-						    	<option id="team0" value="">Select Team</option>
-						    </select>
-                        </td>
-                    </tr>                    
-                    <tr>
-                        <td>Players</td>
-                        <td class="auto-style5">
-                        	<fieldset>
-							    <legend>Assigned Players</legend>
-							    <div class="my-overflow">
-							        <table>
-							            <tr ng-repeat="assignedPlayer in assignedPlayers">
-							            	<td><input type="checkbox" ng-model="assignedPlayer.selected" value={{assignedPlayer.name}} id={{assignedPlayer.id}} />{{assignedPlayer.name}}</td>
-							            </tr>							            
-							        </table>
-							    </div>
-							</fieldset>
-                        </td>
-                        <!-- <td><textarea id="TextArea1" cols="20" style="height:100px"></textarea></td> -->
-                        <td><button ng-click="addPlayers()" style="width: 90%; height: 20%">< Add</button> <br/>
-                        <button ng-click="removePlayers()" style="width: 90%; height: 20%">Remove ></button></td>
-                        <td class="auto-style5">
-                        	<fieldset>
-							    <legend>Unassigned Players</legend>
-							    <div class="my-overflow">
-							        <table>
-							            <tr ng-repeat="unassignedPlayer in unassignedPlayers">
-							            	<td id={{unassignedPlayer.id}}><input type="checkbox" ng-model="unassignedPlayer.selected" value={{unassignedPlayer.name}}  />{{unassignedPlayer.name}}</td>
-							            </tr>							            
-							        </table>
-							    </div>
-							</fieldset>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-                    		<input id="btnCreate" type="button" value="Submit" />
-                    	</td>
-                    </tr>
-                </table>
-                
-            </td>
-
-        </tr>
-    </table>
+	<form ng-submit="submit()">
+	    <table style="width: 100%;">
+	        <tr>
+	            <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
+	        </tr>
+	        <tr>
+	            <td class="auto-style2">
+	                <table style="width: 600px;height:100%">
+	                    <tr>
+	                        <td style="text-align: left; font-family: Arial; font-size: x-large" colspan="3">Draft Players</td>
+	                    </tr>
+	                    <tr>
+	                    	<td>League</td>
+	                    	<td>
+	                    		<select ng-model="selectedLeague" ng-change="getSeasons()" ng-options="league as league.name for league in leagues">
+							    	<option id="league0" value="">Select League</option>
+							    </select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Season</td>
+	                        <td>
+	                        	<select ng-model="selectedSeason" ng-change="getDivisions()" ng-options="season as season.name for season in seasons">
+							    	<option id="season0" value="">Select Season</option>
+							    </select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                    	<td>Division</td>
+	                    	<td> 
+	                    		<select ng-model="selectedDivision" ng-change="getTeams()" ng-options="division as division.name for division in divisions">
+							    	<option id="division0" value="">Select Division</option>
+							    </select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Division Age</br>Range From</td>
+	                        <td>
+	                        	<input type="text" value="{{selectedDivision.divisionminage}}" disabled="disabled">
+	                        </td>
+	                        <td align="right">To</td>
+	                        <td>
+	                        	<input type="text" width="10px" value="{{selectedDivision.divisionnumberofplayers}}"  disabled="disabled">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Team</td>
+	                        <td>
+	                        	<select ng-model="selectedTeam" ng-change="getAssignedPlayers()" ng-options="team as team.name for team in teams">
+							    	<option id="team0" value="">Select Team</option>
+							    </select>
+	                        </td>
+	                    </tr>                    
+	                    <tr>
+	                        <td>Players</td>
+	                        <td class="auto-style5">
+	                        	<fieldset>
+								    <legend>Assigned Players</legend>
+								    <div class="my-overflow">
+								        <table>
+								            <tr ng-repeat="assignedPlayer in assignedPlayers">
+								            	<td><input type="checkbox" ng-model="assignedPlayer.selected" value={{assignedPlayer.name}} id={{assignedPlayer.id}} />{{assignedPlayer.name}}</td>
+								            </tr>							            
+								        </table>
+								    </div>
+								</fieldset>
+	                        </td>
+	                        <td>
+	                        	<button type="button" ng-click="addPlayers()" style="width: 90%; height: 20%">< Add</button><br/>
+	                        	<button type="button" ng-click="removePlayers()" style="width: 90%; height: 20%">Remove ></button>
+	                        </td>
+	                        <td class="auto-style5">
+	                        	<fieldset>
+								    <legend>Unassigned Players</legend>
+								    <div class="my-overflow">
+								        <table>
+								            <tr ng-repeat="unassignedPlayer in unassignedPlayers">
+								            	<td id={{unassignedPlayer.id}}><input type="checkbox" ng-model="unassignedPlayer.selected" value={{unassignedPlayer.name}}  />{{unassignedPlayer.name}}</td>
+								            </tr>							            
+								        </table>
+								    </div>
+								</fieldset>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                    	<td>
+	                    		<button type="submit">Submit</button>	                    		
+	                    	</td>
+	                    </tr>
+	                </table>	                
+	            </td>	
+	        </tr>
+	 	</table>
+	 </form>
     <script src="scripts/import.js"></script>
     <script src="scripts/services/UserService.js"></script>
 	<script src="scripts/controllers/DraftPlayers-Controller.js"></script>	
