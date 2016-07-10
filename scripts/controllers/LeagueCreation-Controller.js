@@ -1,8 +1,8 @@
-var app = angular.module('myApp', []);
+//var app = angular.module('myApp', []);
 
-app.controller('LeagueCreationController', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('LeagueCreation-Controller', ['$scope', 'UserService', function($scope, UserService) {
     $scope.myFunc = function () {
-    	UserService.getJson($scope.leagueName, $scope.leagueLocation).then(
+    	UserService.setLeague($scope.leagueName, $scope.leagueLocation).then(
 	        function(d) {
 	        	var response = d.data;
 	            $scope.confirmation = response.leagueName + " successfully created";

@@ -21,15 +21,15 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
             	console.error('Error while fetching users');
                 return $q.reject(dd);
             });
-        },/*
-        getJson: function(leagueName, leagueLocation) {        	
+        },
+        setLeague: function(leagueName, leagueLocation) {        	
         	params = {
         			'leagueName': leagueName,
         			'leagueLocation': leagueLocation,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/getJson',
+            	url: '/baseball-league-web/setLeague',
             	method: 'JSONP',
             	params: params
 			}).
@@ -41,7 +41,7 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
             	console.error('Error while creating league');
                 return $q.reject(dd);
             });
-        },*/
+        },
         getLeague: function(){
         	params = {
         			'callback': 'JSON_CALLBACK'
