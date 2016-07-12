@@ -135,9 +135,10 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
                  return $q.reject(dd);
              });
         },
-        modifyPlayers: function(assignedPlayers){
+        modifyPlayers: function(teamId, assignedPlayers){
         	var playerList = angular.toJson(assignedPlayers);
         	params = {
+        			'teamId':teamId,
         			'assignedPlayers': playerList,
         			'callback': 'JSON_CALLBACK'
 			};

@@ -8,7 +8,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
     $scope.addPlayers = function() {
 		for(var i = $scope.unassignedPlayers.length - 1; i >= 0; i--){
 		    if($scope.unassignedPlayers[i].selected){
-		    	$scope.assignedPlayers.push({id:angular.toJson($scope.unassignedPlayers[i].id),name:$scope.unassignedPlayers[i].name});
+		    	$scope.assignedPlayers.push({id:$scope.unassignedPlayers[i].id,name:$scope.unassignedPlayers[i].name});
 		        $scope.unassignedPlayers.splice(i,1);
 		    }
 		}
@@ -16,7 +16,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
     $scope.removePlayers = function(index) {
     	for(var i = $scope.assignedPlayers.length - 1; i >= 0; i--){
 		    if($scope.assignedPlayers[i].selected){
-		    	$scope.unassignedPlayers.push({id:angular.toJson($scope.assignedPlayers[i].id),name:$scope.assignedPlayers[i].name});
+		    	$scope.unassignedPlayers.push({id:$scope.assignedPlayers[i].id,name:$scope.assignedPlayers[i].name});
 		        $scope.assignedPlayers.splice(i,1);
 		    }
 		}
@@ -64,7 +64,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
 	        function(d) {
 	        	$scope.unassignedPlayers = [];
 	        	angular.forEach(d.data,function(player,index){
-	        		$scope.unassignedPlayers.push({id:angular.toJson(player.personID),name:player.firstName+" "+player.lastName});
+	        		$scope.unassignedPlayers.push({id:player.personID,name:player.firstName+" "+player.lastName});
 	            });
 	        }
         );
@@ -75,15 +75,16 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
 	        function(d) {
 	        	$scope.assignedPlayers = [];
 	        	angular.forEach(d.data,function(player,index){
-	        		$scope.assignedPlayers.push({id:angular.toJson(player.personID),name:player.firstName+" "+player.lastName});
+	        		$scope.assignedPlayers.push({id:player.personID,name:player.firstName+" "+player.lastName});
 	            });
 	        }
         );
     };
     $scope.submit = function() {
-    	UserService.modifyPlayers($scope.assignedPlayers).then(
+    	UserService.modifyPlayers($scope.selectedTeam.id ,$scope.assignedPlayers).then(
 	        function(d) {
-	        	alert(d);
+	        	if(d.data === true)
+	        		alert("Players added successfully.");
 	        }
         );
     };
