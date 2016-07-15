@@ -1,10 +1,13 @@
 app.controller('Register-Controller', ['$scope', 'UserService', function($scope, UserService) {
-    $scope.submit = function(){
-		for(var i = $scope.unassignedPlayers.length - 1; i >= 0; i--){
-		    if($scope.unassignedPlayers[i].selected){
-		    	$scope..push({id:$scope.unassignedPlayers[i].id,name:$scope.unassignedPlayers[i].name});
-		        $scope.unassignedPlayers.splice(i,1);
-		    }
-		}
-    }; 
+	 $scope.myFunc = function () {
+	    	UserService.getJson($scope.username, $scope.password,$scope.passwordConf,$scope.email).then(
+		        function(d) {
+		        	var response = d.data;
+		            $scope.fullName = response.username + " registered successfully";
+		        },
+		        function(errResponse){
+		        	console.error('Error while fetching Currencies');
+		        }
+	        );    	
+	 }
 }]);

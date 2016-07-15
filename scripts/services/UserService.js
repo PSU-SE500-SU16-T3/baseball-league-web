@@ -155,6 +155,56 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
              	console.error('Error while saving modifyPlayers');
                  return $q.reject(dd);
              });
+        },
+        addperson: function(username, password, firstname, lastname, middlename, email, dob, role) {        	
+        	params = {
+        			'username': username,
+        			'password': password,
+        			'email': email,
+        			'firstname':firstname,
+        			'lastname':lastname,
+        			'middlename':middlename,
+        			'dob':dob,
+        			'role':role,
+        			'callback': 'JSON_CALLBACK'
+			};
+            return $http({
+            	url: '/baseball-league-web/register',
+            	method: 'JSONP',
+            	params: params
+			}).
+            success(function(response) {
+            	return response.data;
+            }).
+            error(function (response) {
+            	var dd = JSON.stringify(response);
+            	console.error('Error while fetching users');
+                return $q.reject(dd);
+             });
+        },
+        addaddress: function(address, city, state, zip, homephone, mobilephone) {        	
+        	params = {
+        			'address': address,
+        			'city': city,
+        			'state': state,
+        			'zip':zip,
+        			'homephone':homephone,
+        			'mobilephone':mobilephone,
+        			'callback': 'JSON_CALLBACK'
+			};
+            return $http({
+            	url: '/baseball-league-web/register',
+            	method: 'JSONP',
+            	params: params
+			}).
+            success(function(response) {
+            	return response.data;
+            }).
+            error(function (response) {
+            	var dd = JSON.stringify(response);
+            	console.error('Error while fetching users');
+                return $q.reject(dd);
+             });
         }
     }; 
 }]);
