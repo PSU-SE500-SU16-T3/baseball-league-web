@@ -178,7 +178,7 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
-            	console.error('Error while fetching users');
+            	console.error('Error adding Person');
                 return $q.reject(dd);
              });
         },
@@ -202,7 +202,28 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
-            	console.error('Error while fetching users');
+            	console.error('Error while adding Info');
+                return $q.reject(dd);
+             });
+        },
+        addpayment: function(cardnumber, experation, cvcode) {        	
+        	params = {
+        			'cardnumber': cardnumber,
+        			'experation': experation,
+        			'cvcode': cvcode,
+        			'callback': 'JSON_CALLBACK'
+			};
+            return $http({
+            	url: '/baseball-league-web/register',
+            	method: 'JSONP',
+            	params: params
+			}).
+            success(function(response) {
+            	return response.data;
+            }).
+            error(function (response) {
+            	var dd = JSON.stringify(response);
+            	console.error('Error while adding Info');
                 return $q.reject(dd);
              });
         }

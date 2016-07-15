@@ -5,7 +5,70 @@
 <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
-<head></head>
+<head>    <script type="text/javascript">
+    	var count = 1;
+    	
+    	function myFunc() {
+    		var radios = document.getElementsByName("optradio");;
+    		var role = "";
+    		for (var i = 0, length = radios.length; i < length; i++) {
+    		    if (radios[i].checked) {
+    		        // do whatever you want with the checked radio
+    		        role = radios[i].value;
+					
+    		        // only one radio can be logically checked, don't check the rest
+    		        break;
+    		    }
+    		}
+    		if (role != "") {
+    	  count += 1;
+    	  var d2 = document.getElementById("divPerson"),
+    	      d3 = document.getElementById("divInfo"),
+    	  	  d4 = document.getElementById("divPayment"),
+    	  	  d5 = document.getElementById("divLeagueCreation");
+    	  if (count === 1) {
+    	    if (d2.style.display == "none") {
+    	      d2.style.display = "block";
+    	      d3.style.display = "none";
+    	      d4.style.display = "none";
+    	      d5.style.display = "none";
+    	    }
+    	  }
+    	  if (count === 2 && role=='Referee') {
+    	    if (d3.style.display == "none") {
+      	      d2.style.display = "none";
+    	      d3.style.display = "block";
+    	      var button = document.getElementById("infoContinue");
+    	      button.setAttribute('type', 'submit');
+    	      button.setAttribute('value', 'Register');
+    	      d4.style.display = "none";
+    	      d5.style.display = "none";
+    	    }}
+    	  else{
+        	      d2.style.display = "none";
+        	      d3.style.display = "block";
+        	      d4.style.display = "none";
+        	      d5.style.display = "none";
+    	    }
+    	  if (count === 3 && role=='Player') {
+      	    if (d4.style.display == "none") {
+        	      d2.style.display = "none";
+        	      d3.style.display = "none";
+        	      d4.style.display = "block";
+        	      d5.style.display = "none";
+      	    }
+      	  }
+    	  if (count === 3 && role=='Manager') {
+        	    if (d5.style.display == "none") {
+          	      d2.style.display = "none";
+          	      d3.style.display = "none";
+          	      d4.style.display = "none";
+          	      d5.style.display = "block";
+        	    }
+        	  }
+    	  }
+    	}
+    </script></head>
 <body ng-app="myApp" ng-controller="Register-Controller">
 	<div id="divPerson" class="container">
         <div class="row centered-form">
@@ -63,19 +126,19 @@
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    				<div class="form-group">
 			    				<div class="radio">
-								  <label><input type="radio" name="optradio" ng-model="role">Manager</label>
+								  <label><input type="radio" name="optradio" ng-model="role" value="Manager">Manager</label>
 								</div>
 								<div class="radio">
-								  <label><input type="radio" name="optradio" ng-model="role">Player</label>
+								  <label><input type="radio" name="optradio" ng-model="role" value="Player">Player</label>
 								</div>
 								<div class="radio">
-								  <label><input type="radio" name="optradio" ng-model="role">Referee</label>
+								  <label><input type="radio" name="optradio" ng-model="role" Value=Referee>Referee</label>
 								</div>
 			    				</div>
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="submit" value="Continue" class="btn btn-info btn-block">
+			    			<input type="button" value="Continue" class="btn btn-info btn-block" onclick="myFunc()">
 			    		
 			    		</form>
 			    	</div>
@@ -83,7 +146,7 @@
     		</div>
     	</div>
     </div>
-    <div id="divInfo" class="container">
+    <div id="divInfo" class="container" style="display:none">
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
@@ -182,7 +245,7 @@
 			    			<div class="row">
 			    			</div>
 			    			
-			    			<input type="submit" value="Continue" class="btn btn-info btn-block">
+			    			<input id="infoContinue" type="button" value="Continue" class="btn btn-info btn-block" onclick="myFunc()">
 			    		
 			    		</form>
 			    	</div>
@@ -190,7 +253,7 @@
     		</div>
     	</div>
     </div>
-    <div id="divPayment" class="container">
+    <div id="divPayment" class="container" style="display:none">
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
@@ -207,7 +270,7 @@
                     </div>                    
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                    <form role="form" id="payment-form" method="POST" action="">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -258,7 +321,7 @@
                             <div class="col-xs-12">
                             </div>                        
                         </div>
-                        <input type="submit" value="Register" class="btn btn-info btn-block">
+                        <input type="submit" value="Register" class="btn btn-info btn-block" onclick="myFunc()">
                         <div class="row" style="display:none;">
                             <div class="col-xs-12">
                                 <p class="payment-errors"></p>
@@ -271,7 +334,7 @@
     		</div>
     	</div>
     </div>
-    <div id="divLeagueCreation" class="container">
+    <div id="divLeagueCreation" class="container" style="display:none">
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
@@ -310,7 +373,7 @@
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    			<input type="submit" value="Register" class="btn btn-info btn-block" onclick="myFunc()">
 			    		
 			    		</form>
 			    	</div>
@@ -318,4 +381,5 @@
     		</div>
     	</div>
     </div>
+
 </body>
