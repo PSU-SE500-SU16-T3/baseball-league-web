@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<head>
+    <title>Baseball App Home Page</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 58px;
+        }
+        .auto-style2 {
+            height: 234px;
+        }
+        #txtUsrName {
+            width: 238px;
+        }
+        #btnCreate {
+            margin-left: 111px;
+        }
+        #btnLogin {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="Login-Controller">
+	<div class="alert alert-danger" ng-show="error">{{error}}</div>
+	<div  class="auto-style1" style="background-color: #428bca; border-color:#46b8da;
+	 color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; 
+	 text-transform: capitalize; text-align: left; margin-bottom:30px;">
+		Baseball League App
+	</div>
+	<div id="divPerson" class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Login</h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form ng-submit="login()">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <input type="text" name="username" id="username" class="form-control input-sm" placeholder="Username"  ng-model="credentials.username">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"  ng-model="credentials.password">
+			    					</div>
+			    				</div>
+			    			</div>	
+			    			<button type="submit" class="btn btn-info btn-block">Log In</button>	
+			    			<button type="button" class="btn btn-info btn-block">Create Account</button>	    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>    
+</body>
+</html>

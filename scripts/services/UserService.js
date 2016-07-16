@@ -226,6 +226,26 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
             	console.error('Error while adding Info');
                 return $q.reject(dd);
              });
+        },
+        login: function(credentials){
+        	var authdata = btoa(credentials.username + ':' + credentials.password);
+        	params = {
+        			'authdata':authdata,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/login',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+         	return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while saving modifyPlayers');
+ 				return $q.reject(dd);
+ 			});
         }
     }; 
 }]);

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <head>
     <title>Baseball App Home Page</title>
     <style type="text/css">
@@ -20,57 +23,15 @@
         }
     </style>
 </head>
-<body>
-    <table style="width: 100%;">
-        <tr>
-            <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
-        </tr>
-        <tr>
-            <td class="auto-style2">
-                <table style="width: 100%;height:100%">
-                    <tr>
-                        <td style="text-align: center; font-family: Arial; font-size: x-large">
-                            Log In
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table style="width: 100%; height:100%">
-                                <tr style="width: 100%;">
-                                    <td style="text-align: right; width: 50%;" colspan="2">
-                                        User Name:
-                                    </td>
-                                    <td>
-                                        <input id="txtUsrName" type="text"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right; width: 50%;" colspan="2" >
-                                        Password:
-                                    </td>
-                                    <td>
-                                        <input id="txtPasswrd" type="password"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width:45%">
-                                    </td>
-                                    <td>
-                                        <input id="btnLogin" type="button" value="Log In"/>
-                                    </td>
-                                    <td>
-                                        <input id="btnCreate" type="button" onclick="register.htm" value="Create Account" />
-                                    </td>
-                                    <td style="width:45%">
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-
-        </tr>
-    </table>
+<body ng-app="myApp" ng-controller="Login-Controller">
+	<div ng-view></div>
+    <script src="scripts/import.js"></script>
+    <script src="scripts/controllers/Login-Controller.js"></script>
+    <script src="scripts/controllers/ManagerHomePage-Controller.js"></script>
+    <script src="scripts/controllers/Player-Controller.js"></script>
+    
+    <script src="scripts/services/UserService.js"></script>
+    <script src="scripts/services/Base64.js"></script>
+    
 </body>
 </html>
