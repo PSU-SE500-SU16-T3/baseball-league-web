@@ -1,9 +1,9 @@
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute','ngCookies']);
 
 app.config([ '$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
         $routeProvider.when('/admin/home', {
-            templateUrl : 'ManagerHomePage.html',
+            templateUrl : 'ManagerDashboard.html',
             controller : 'ManagerHomePage-Controller'
         })
         $routeProvider.when('/player/home', {
