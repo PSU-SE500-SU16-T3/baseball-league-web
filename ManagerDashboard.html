@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<head>
+    <title>Baseball App Home Page</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 58px;
+        }
+        .auto-style2 {
+            height: 234px;
+        }
+        #txtUsrName {
+            width: 238px;
+        }
+        #btnCreate {
+            margin-left: 111px;
+        }
+        #btnLogin {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="ManagerHomePage-Controller">	
+	<div  class="auto-style1" style="background-color: #428bca; border-color:#46b8da;
+	 color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; 
+	 text-transform: capitalize; text-align: left; margin-bottom:30px;">
+	 <div class="row">
+	 </div  class="row">
+	 	<div>Baseball League App</div>
+	</div>
+	<div id="divPerson" class="container">		
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Manage Your League</h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form ng-submit="login()">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<select class="form-control select input-sm" ng-model="selectedSeason" ng-change="getDivisions()" ng-options="season as season.name for season in seasons">
+									    	<option id="season0" value="">Select Season</option>
+									    </select>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<button type="button" class="btn btn-info btn-block">Edit Season</button>
+			    					</div>
+			    				</div>
+			    			</div>	
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<select class="form-control select input-sm" ng-model="selectedDivision" ng-change="getTeams()" ng-options="division as division.name for division in divisions">
+									    	<option id="division0" value="">Select Division</option>
+									    </select>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<button type="button" class="btn btn-info btn-block">Edit Division</button>
+			    					</div>
+			    				</div>
+			    			</div>	
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<select class="form-control select input-sm" ng-model="selectedTeam" ng-options="team as team.name for team in teams">
+									    	<option id="team0" value="">Select Team</option>
+									    </select>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<button type="button" class="btn btn-info btn-block">Edit Team</button>
+			    					</div>
+			    				</div>
+			    			</div>	
+			    			<button type="button" ng-click="createNewSeason()" class="btn btn-info btn-block">Create New Season</button>	
+			    			<button type="button" class="btn btn-info btn-block">Create New Division</button>
+			    			<button type="button" class="btn btn-info btn-block">Create New Team</button>	    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    	<div class="alert alert-danger" ng-show="error">{{error}}</div>
+    </div>    
+</body>
+</html>

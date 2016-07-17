@@ -1,4 +1,5 @@
-app.factory('UserService', ['$http', '$q', function($http, $q){ 
+app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cookies){ 
+	var loggedInUserDetails = {};
     return {         
         getJson: function(username, password,passwordConf, email) {        	
         	params = {
@@ -94,7 +95,26 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
              }).
              error(function (response) {
              	var dd = JSON.stringify(response);
-             	console.error('Error while fetching leagues');
+             	console.error('Error while fetching divisions');
+                 return $q.reject(dd);
+             });
+        },
+        getTeams: function(divisionId){
+        	params = {
+        			'divisionId': divisionId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getTeams',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching teams');
                  return $q.reject(dd);
              });
         },
@@ -239,11 +259,38 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
              	params: params
  			}).
  			success(function(response) {
-         	return response;
+ 				$cookies.putObject("loggedInUserDetails", response);
+ 				loggedInUserDetails = response;
+ 				return response;
  			}).
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while saving modifyPlayers');
+ 				return $q.reject(dd);
+ 			});
+        },
+        getLoggedInUserDetails: function(){
+        	return loggedInUserDetails;
+        },
+        registerSeason: function(season, leagueId){
+        	params = {
+        			'seasonName':season.name,
+        			'seasonStartDate':season.startdt,
+        			'seasonEndDate':season.enddt,
+        			'leagueId':leagueId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/registerSeason',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while registering new season. Please try again later.');
  				return $q.reject(dd);
  			});
         }
