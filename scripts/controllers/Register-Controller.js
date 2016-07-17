@@ -1,9 +1,30 @@
 app.controller('Register-Controller', ['$scope', 'UserService', function($scope, UserService) {
-	 $scope.myFunc = function () {
-	    	UserService.getJson($scope.username, $scope.password,$scope.passwordConf,$scope.email).then(
+	 $scope.addperson = function () {
+	    	UserService.addperson($scope.username, $scope.password, $scope.firstname, $scope.lastname, $scope.middlename,
+	    			$scope.email, $scope.dob, $scope.role).then(
 		        function(d) {
-		        	var response = d.data;
-		            $scope.fullName = response.username + " registered successfully";
+		        	var response = d.data;		            
+		        },
+		        function(errResponse){
+		        	console.error('Error while fetching Currencies');
+		        }
+	        );    	
+	 },
+	 $scope.addaddress = function () {
+	    	UserService.addperson($scope.address, $scope.city, $scope.state, $scope.zip, $scope.homephone,
+	    			$scope.mobilephone).then(
+		        function(d) {
+		        	var response = d.data;		            
+		        },
+		        function(errResponse){
+		        	console.error('Error while fetching Currencies');
+		        }
+	        );    	
+	 },
+	 $scope.addpayment = function () {
+	    	UserService.addperson($scope.cardnumber, $scope.experation, $scope.cvc).then(
+		        function(d) {
+		        	var response = d.data;		            
 		        },
 		        function(errResponse){
 		        	console.error('Error while fetching Currencies');

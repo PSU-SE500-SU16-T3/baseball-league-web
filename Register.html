@@ -138,7 +138,7 @@
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="button" value="Continue" class="btn btn-info btn-block" onclick="myFunc()">
+			    			<input type="button" value="Continue" class="btn btn-info btn-block" ng-click="addperson()" onclick="myFunc()">
 			    		
 			    		</form>
 			    	</div>
@@ -158,17 +158,17 @@
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-12">
 			    					<div class="form-group">
-			                <input type="text" name="home_address" id="Home_Address" class="form-control input-sm" placeholder="Home Address">
+			                <input type="text" name="home_address" id="Home_Address" class="form-control input-sm" placeholder="Home Address" ng-model="address">
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-12">
 			    					<div class="form-group">
-			    						<input type="text" name="city" id="city" class="form-control input-sm" placeholder="City">
+			    						<input type="text" name="city" id="city" class="form-control input-sm" placeholder="City" ng-model="city">
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<select class="form-control" id="state" name="state" placeholder="State">
+			    						<select class="form-control" id="state" name="state" placeholder="State" ng-model="state">
 			 <option value="" disabled selected>State</option>
 			<option value="AK">Alaska</option>
 			<option value="AL">Alabama</option>
@@ -227,18 +227,18 @@
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="text" name="zip" id="zip" class="form-control input-sm" placeholder="Zip">
+			    						<input type="text" name="zip" id="zip" class="form-control input-sm" placeholder="Zip" ng-model="zip">
 			    					</div>
 			    				</div>
 			    			</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="text" name="Home_Phone" id="Home_Phone" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" placeholder="Home Phone">
+			    						<input type="text" name="Home_Phone" id="Home_Phone" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" placeholder="Home Phone" ng-model="homephone">
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="text" name="mobile_Phone" id="mobile_Phone" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" placeholder="Mobile Phone">
+			    						<input type="text" name="mobile_Phone" id="mobile_Phone" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" placeholder="Mobile Phone" ng-model="mobilephone">
 			    					</div>
 			    				</div>
 
@@ -283,6 +283,7 @@
                                             placeholder="Valid Card Number"
                                             autocomplete="cc-number"
                                             required autofocus 
+                                            ng-model="cardNumber"
                                         />
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
@@ -299,6 +300,7 @@
                                         name="cardExpiry"
                                         placeholder="MM / YY"
                                         autocomplete="cc-exp"
+                                        ng-model="experation"
                                         required 
                                     />
                                 </div>
@@ -313,6 +315,7 @@
                                         placeholder="CVC"
                                         autocomplete="cc-csc"
                                         required
+                                        ng-model=cvc
                                     />
                                 </div>
                             </div>
@@ -342,40 +345,7 @@
 			    		<h3 class="panel-title"> Please Create Your League</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form">
-			    			<div class="row">
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
-			    					</div>
-			    				</div>
-			    			</div>
-
-			    			<div class="form-group">
-			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-			    			</div>
-
-			    			<div class="row">
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
-			    					</div>
-			    				</div>
-			    			</div>
-			    			
-			    			<input type="submit" value="Register" class="btn btn-info btn-block" onclick="myFunc()">
 			    		
-			    		</form>
 			    	</div>
 	    		</div>
     		</div>

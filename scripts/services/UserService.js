@@ -206,11 +206,11 @@ app.factory('UserService', ['$http', '$q', function($http, $q){
                 return $q.reject(dd);
              });
         },
-        addpayment: function(cardnumber, experation, cvcode) {        	
+        addpayment: function(cardnumber, experation, cvc) {        	
         	params = {
         			'cardnumber': cardnumber,
         			'experation': experation,
-        			'cvcode': cvcode,
+        			'cvc': cvcode,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
