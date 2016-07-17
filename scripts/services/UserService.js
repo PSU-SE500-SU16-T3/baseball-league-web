@@ -271,6 +271,28 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         },
         getLoggedInUserDetails: function(){
         	return loggedInUserDetails;
+        },
+        registerSeason: function(season, leagueId){
+        	params = {
+        			'seasonName':season.name,
+        			'seasonStartDate':season.startdt,
+        			'seasonEndDate':season.enddt,
+        			'leagueId':leagueId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/registerSeason',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while registering new season. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
         }
     }; 
 }]);

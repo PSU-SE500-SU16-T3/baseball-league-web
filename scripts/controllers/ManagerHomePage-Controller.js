@@ -1,4 +1,4 @@
-app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies', function($scope, UserService, $cookies) {
+app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies','$location', function($scope, UserService, $cookies, $location) {
 	var loggedInUserDetails = $cookies.getObject("loggedInUserDetails");
 	$scope.seasons = [];
 	$scope.divisions = [];
@@ -8,6 +8,10 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     	UserService.getSeasons(loggedInUserDetails.body.leagueId).then(
 	        function(d) {
 	        	$scope.seasons = [];
+	        	if(d === null || d.data.length === 0){
+	        		$scope.error = "Season not created, please create a new season.";
+	        		return
+	        	}
 	        	angular.forEach(d.data,function(season,index){
 	        		$scope.seasons.push({id:season.seasonID,name:season.seasonName});
 	             });
@@ -19,6 +23,10 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     	UserService.getDivisions($scope.selectedSeason.id).then(
 	        function(d) {
 	        	$scope.divisions = [];
+	        	if(d === null || d.data.length === 0){
+	        		$scope.error = "Division not created, please create a new division.";
+	        		return
+	        	}
 	        	angular.forEach(d.data,function(division,index){
 	        		$scope.divisions.push({id:division.divisionID,name:division.divisionTitle,divisionminage:division.divisionMinAge,divisionmaxage:division.divisionMaxAge,divisionnumberofplayers:division.divisionNumPlayers});
 	             });
@@ -31,11 +39,18 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     	UserService.getTeams(divisionId).then(
 	        function(d) {
 	        	$scope.teams = [];
+	        	if(d === null || d.data.length === 0){
+	        		$scope.error = "Team not created, please create a new team.";
+	        		return
+	        	}
 	        	angular.forEach(d.data,function(team,index){
 	        		$scope.teams.push({id:team.teamID,name:team.teamTitle,teamNumPlayers:team.teamNumPlayers,divisionid:divisionId,fieldid:team.fieldID});
 	            });
 	        }
         );
     };
+    $scope.createNewSeason = function() {
+		$location.path("/admin/createnewseason");
+    }
     $scope.getSeasons();
 }]);

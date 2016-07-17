@@ -6,6 +6,10 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'ManagerDashboard.html',
             controller : 'ManagerHomePage-Controller'
         })
+        $routeProvider.when('/admin/createnewseason', {
+            templateUrl : 'CreateNewSeason.html',
+            controller : 'Season-Controller'
+        })
         $routeProvider.when('/player/home', {
             templateUrl : 'PlayerHomePage.html',
             controller : 'PlayerHomeController'
