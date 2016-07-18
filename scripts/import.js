@@ -18,6 +18,10 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'PlayerHomePage.html',
             controller : 'PlayerHomeController'
         })
+        $routeProvider.when('/register', {
+            templateUrl : 'Register.html',
+            controller : 'Register-Controller'
+        })
         $routeProvider.when('/', {
             templateUrl : 'login.html',
             controller : 'Login-Controller'

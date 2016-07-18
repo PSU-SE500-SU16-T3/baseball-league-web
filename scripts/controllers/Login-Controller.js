@@ -11,4 +11,7 @@ app.controller('Login-Controller', ['$scope','$location', 'UserService', functio
 		        }
 	        );
 	  };
+	  $scope.register = function() {
+		  $location.path("/register");
+	  };
 }]);
