@@ -189,12 +189,12 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addperson',
             	method: 'JSONP',
             	params: params
 			}).
             success(function(response) {
-            	return response.data;
+            	return response;
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
@@ -213,7 +213,7 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addaddress',
             	method: 'JSONP',
             	params: params
 			}).
@@ -234,7 +234,7 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addpayment',
             	method: 'JSONP',
             	params: params
 			}).
