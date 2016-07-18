@@ -317,5 +317,6 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  				return $q.reject(dd);
  			});
         }
+        
     }; 
 }]);
