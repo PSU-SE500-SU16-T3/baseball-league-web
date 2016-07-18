@@ -10,7 +10,9 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
 	        	$scope.seasons = [];
 	        	if(d === null || d.data.length === 0){
 	        		$scope.error = "Season not created, please create a new season.";
-	        		return
+	        		return;
+	        	}else{
+	        		$scope.error = "";
 	        	}
 	        	angular.forEach(d.data,function(season,index){
 	        		$scope.seasons.push({id:season.seasonID,name:season.seasonName});
@@ -51,6 +53,14 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     };
     $scope.createNewSeason = function() {
 		$location.path("/admin/createnewseason");
-    }
+    };
+    $scope.createNewDivision = function() {
+    	if(angular.isUndefined($scope.selectedSeason)){
+    		$scope.error = "Please select season to proceed.";
+    		return;
+    	}
+    	$cookies.put('seasonId', $scope.selectedSeason.id);
+		$location.path("/admin/createnewdivision");
+    };
     $scope.getSeasons();
 }]);

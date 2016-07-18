@@ -226,11 +226,11 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                 return $q.reject(dd);
              });
         },
-        addpayment: function(cardnumber, experation, cvcode) {        	
+        addpayment: function(cardnumber, experation, cvc) {        	
         	params = {
         			'cardnumber': cardnumber,
         			'experation': experation,
-        			'cvcode': cvcode,
+        			'cvc': cvcode,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
@@ -291,6 +291,29 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while registering new season. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        registerDivision: function(division, seasonId){
+        	params = {
+        			'divisionName':division.name,
+        			'minAge':division.minage,
+        			'maxAge':division.maxage,
+        			'maxNoOfPlayers':division.maxnoofplayers,
+        			'seasonId':seasonId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/registerDivision',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while registering new division. Please try again later.');
  				return $q.reject(dd);
  			});
         }

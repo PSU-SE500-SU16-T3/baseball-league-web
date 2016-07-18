@@ -15,4 +15,7 @@ app.controller('Season-Controller', ['$scope', 'UserService','$location','$cooki
 	        }
         );
 	}
+	$scope.takeMeTo = function(url){		
+		$location.path(url);
+	}
 }]);
