@@ -8,10 +8,20 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 	    	UserService.addperson($scope.username, $scope.password, $scope.firstname, $scope.lastname, $scope.middlename,
 	    			$scope.email, $scope.dob, $scope.role).then(
 		        function(d) {
-		        	$scope.person =false;
-		        	$scope.info =true;
-		        	$scope.payment=false;
-		        	$scope.league =false;            
+		        	if($scope.role == "Referee"){
+			        	$scope.person =false;
+			        	$scope.info =true;
+			        	$scope.payment=false;
+			        	$scope.league =false;    
+			        	$scope.infobutton ="Register";
+		        	}
+		        	else {
+			        	$scope.person =false;
+			        	$scope.info =true;
+			        	$scope.payment=false;
+			        	$scope.league =false;    
+			        	$scope.infobutton ="Continue";
+		        	}
 		        },
 		       function(errResponse){
 		        	console.error('Error while fetching Currencies');
@@ -19,13 +29,22 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 	        );    	
 	 },
 	 $scope.addaddress = function () {
-	    	UserService.addperson($scope.address, $scope.city, $scope.state, $scope.zip, $scope.homephone,
+	    	UserService.addaddress($scope.address, $scope.city, $scope.state, $scope.zip, $scope.homephone,
 	    			$scope.mobilephone).then(
 		        function(d) {
-		        	$scope.person =false;
-		        	$scope.info =false;
-		        	$scope.payment=true;
-		        	$scope.league =false;
+		        	if ($scope.role == "Player"){
+		        		$scope.person =false;
+		        		$scope.info =false;
+		        		$scope.payment=true;
+		        		$scope.league =false;
+		        	} else if ($scope.role == "Manager"){
+		        		$scope.person =false;
+			        	$scope.info =false;
+			        	$scope.payment=false;
+			        	$scope.league =true;
+		        	} else{
+		        		$window.location.href = '/index.html';
+		        	}
 		        	var response = d.data;		            
 		        },
 		        function(errResponse){
@@ -34,12 +53,9 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 	        );    	
 	 },
 	 $scope.addpayment = function () {
-	    	UserService.addperson($scope.cardnumber, $scope.experation, $scope.cvc).then(
+	    	UserService.addpayment($scope.cardnumber, $scope.experation, $scope.cvc).then(
 		        function(d) {
-		        	$scope.person =false;
-		        	$scope.info =false;
-		        	$scope.payment=false;
-		        	$scope.league =true;
+		        	$window.location.href = '/index.html';
 		        	var response = d.data;		            
 		        },
 		        function(errResponse){
