@@ -226,11 +226,12 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                 return $q.reject(dd);
              });
         },
-        addpayment: function(cardnumber, experation, cvc) {        	
+        addpayment: function(cardnumber, paymenttype, experation, cvc) {        	
         	params = {
         			'cardnumber': cardnumber,
         			'experation': experation,
-        			'cvc': cvcode,
+        			'cvc': cvc,
+        			'paymenttype':paymenttype,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({

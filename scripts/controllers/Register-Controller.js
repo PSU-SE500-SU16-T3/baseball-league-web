@@ -38,12 +38,9 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 		        		$scope.payment=true;
 		        		$scope.league =false;
 		        	} else if ($scope.role == "Manager"){
-		        		$scope.person =false;
-			        	$scope.info =false;
-			        	$scope.payment=false;
-			        	$scope.league =true;
-		        	} else{
 		        		$window.location.href = '/index.html';
+		        	} else{
+		        		$window.location.href = '/LeagueCreation.html';
 		        	}
 		        	var response = d.data;		            
 		        },
@@ -53,7 +50,7 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 	        );    	
 	 },
 	 $scope.addpayment = function () {
-	    	UserService.addpayment($scope.cardnumber, $scope.experation, $scope.cvc).then(
+	    	UserService.addpayment($scope.cardnumber, $scope.paymenttype, $scope.experation, $scope.cvc).then(
 		        function(d) {
 		        	$window.location.href = '/index.html';
 		        	var response = d.data;		            
