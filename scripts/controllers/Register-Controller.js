@@ -1,4 +1,4 @@
-app.controller('Register-Controller', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('Register-Controller', ['$scope','$window', 'UserService',  function($scope,$window, UserService) {
 	$scope.person =true;
 	$scope.info =false;
 	$scope.payment=false;
@@ -38,9 +38,9 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 		        		$scope.payment=true;
 		        		$scope.league =false;
 		        	} else if ($scope.role == "Manager"){
-		        		$location.url('/baseball-league-web/LeagueCreation.html');
+		        		$window.location.href = '/baseball-league-web/LeagueCreation.html';
 		        	} else{
-		        		$location.url('/baseball-league-web/index.html');
+		        		$window.location.href = '/baseball-league-web/index.html';
 		        	}
 		        	var response = d.data;		            
 		        },
@@ -53,7 +53,7 @@ app.controller('Register-Controller', ['$scope', 'UserService', function($scope,
 	    	UserService.addpayment($scope.cardnumber, $scope.paymenttype, $scope.experation, $scope.cvc).then(
 		        function(d) {
 		        	var response = d.data;	
-		        	$location.url('/baseball-league-web/index.html');
+		        	$window.location.href = '/baseball-league-web/index.html';
 		        },
 		        function(errResponse){
 		        	console.error('Error while fetching Currencies');
