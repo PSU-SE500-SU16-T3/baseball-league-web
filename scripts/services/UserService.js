@@ -189,12 +189,12 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addperson',
             	method: 'JSONP',
             	params: params
 			}).
             success(function(response) {
-            	return response.data;
+            	return response;
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
@@ -213,12 +213,12 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addaddress',
             	method: 'JSONP',
             	params: params
 			}).
             success(function(response) {
-            	return response.data;
+            	return response;
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
@@ -226,20 +226,21 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                 return $q.reject(dd);
              });
         },
-        addpayment: function(cardnumber, experation, cvc) {        	
+        addpayment: function(cardnumber, paymenttype, experation, cvc) {        	
         	params = {
         			'cardnumber': cardnumber,
         			'experation': experation,
-        			'cvc': cvcode,
+        			'cvc': cvc,
+        			'paymenttype':paymenttype,
         			'callback': 'JSON_CALLBACK'
 			};
             return $http({
-            	url: '/baseball-league-web/register',
+            	url: '/baseball-league-web/addpayment',
             	method: 'JSONP',
             	params: params
 			}).
             success(function(response) {
-            	return response.data;
+            	return response;
             }).
             error(function (response) {
             	var dd = JSON.stringify(response);
@@ -314,6 +315,47 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while registering new division. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        getSeasonDetail: function(seasonId){
+        	params = {
+        			'seasonId': seasonId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getSeasonDetail',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching leagues');
+                 return $q.reject(dd);
+             });
+        },
+        updateSeason: function(seasonId, seasonname, seasonstartdt, seasonenddt){
+        	params = {
+        			'seasonName':seasonname,
+        			'seasonStartDate':seasonstartdt,
+        			'seasonEndDate':seasonenddt,
+        			'seasonId':seasonId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateSeason',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating season. Please try again later.');
  				return $q.reject(dd);
  			});
         }
