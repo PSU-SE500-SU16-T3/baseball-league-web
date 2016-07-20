@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<head>
+    <title>Baseball App Home Page</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 58px;
+        }
+        .auto-style2 {
+            height: 234px;
+        }
+        #txtUsrName {
+            width: 238px;
+        }
+        #btnCreate {
+            margin-left: 111px;
+        }
+        #btnLogin {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="Team-Controller">	
+	<div  class="auto-style1" style="background-color: #428bca; border-color:#46b8da;
+	 color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; 
+	 text-transform: capitalize; text-align: left;">
+	 <div class="row">
+	 </div  class="row">
+	 	<div>Baseball League App</div>
+	</div>
+	<div><ul class="breadcrumb">
+		    <li><a ng-href="#home" ng-click="takeMeTo('/admin/home')">Home</a></li>
+		</ul></div>
+	<div id="divPerson" class="container">
+				
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Create New Team</h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form ng-submit="registerTeam()">
+		    				<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
+			    					<div class="form-group">
+			                			<input type="text" name="teamName" id="teamName" class="form-control input-sm" placeholder="Team Name"  ng-model="team.name">
+			    					</div>
+			    				</div>
+			    			</div>	
+			    			<div class="row">
+			    				<div class="col-xs-9 col-sm-9 col-md-9">
+			    					<div class="form-group">
+			                			<input type="number" min="0" max="35" name="teamNoOfPlayers" id="teamNoOfPlayers" class="form-control input-sm" placeholder="No of Players"  ng-model="team.noofplayers">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			<button type="submit" class="btn btn-info btn-block">Submit</button>  	
+			    			<button type="button" ng-click="draftPlayers()" ng-show="showDraftPlayers" class="btn btn-info btn-block" ng-hide="hideDraftPlayers">Draft/Edit Players</button>	
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    	<div class="alert alert-danger" ng-show="error">{{error}}</div>
+    	<div class="alert alert-success" ng-show="success">{{success}}</div>
+    </div>    
+</body>
+</html>

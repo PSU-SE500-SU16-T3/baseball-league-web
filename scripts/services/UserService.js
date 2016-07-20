@@ -318,6 +318,27 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  				return $q.reject(dd);
  			});
         },
+        registerTeam: function(team, divisionId){
+        	params = {
+        			'teamName':team.name,
+        			'noOfPlayers':team.noofplayers,
+        			'divisionId':divisionId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/registerTeam',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while registering new team. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
         getSeasonDetail: function(seasonId){
         	params = {
         			'seasonId': seasonId,

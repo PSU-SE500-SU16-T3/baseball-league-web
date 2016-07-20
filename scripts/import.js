@@ -18,6 +18,14 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'CreateNewDivision.html',
             controller : 'Division-Controller'
         })
+        $routeProvider.when('/admin/createnewteam', {
+            templateUrl : 'CreateNewTeam.html',
+            controller : 'Team-Controller'
+        })
+        $routeProvider.when('/admin/draftplayers', {
+            templateUrl : 'DraftPlayers.html',
+            controller : 'DraftPlayers-Controller'
+        })
         $routeProvider.when('/player/home', {
             templateUrl : 'PlayerHomePage.html',
             controller : 'PlayerHomeController'
