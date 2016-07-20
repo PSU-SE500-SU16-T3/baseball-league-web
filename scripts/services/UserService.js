@@ -317,7 +317,47 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  				console.error('Error while registering new division. Please try again later.');
  				return $q.reject(dd);
  			});
-        }
-        
+        },
+        getSeasonDetail: function(seasonId){
+        	params = {
+        			'seasonId': seasonId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getSeasonDetail',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching leagues');
+                 return $q.reject(dd);
+             });
+        },
+        updateSeason: function(seasonId, seasonname, seasonstartdt, seasonenddt){
+        	params = {
+        			'seasonName':seasonname,
+        			'seasonStartDate':seasonstartdt,
+        			'seasonEndDate':seasonenddt,
+        			'seasonId':seasonId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateSeason',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating season. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        }        
     }; 
 }]);

@@ -54,6 +54,9 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     $scope.createNewSeason = function() {
 		$location.path("/admin/createnewseason");
     };
+    $scope.editSeason = function() {    	
+		$location.path("/admin/editseason").search('seasonId',$scope.selectedSeason.id);
+    };
     $scope.createNewDivision = function() {
     	if(angular.isUndefined($scope.selectedSeason)){
     		$scope.error = "Please select season to proceed.";
@@ -61,7 +64,6 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     	}
     	$cookies.put('seasonId', $scope.selectedSeason.id);
 		$location.path("/admin/createnewdivision");
-    };
-    
+    };    
     $scope.getSeasons();
 }]);
