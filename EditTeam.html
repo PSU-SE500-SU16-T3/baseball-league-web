@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body ng-app="myApp" ng-controller="Team-Controller">	
+<body ng-app="myApp" ng-controller="EditTeam-Controller">	
 	<div  class="auto-style1" style="background-color: #428bca; border-color:#46b8da;
 	 color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; 
 	 text-transform: capitalize; text-align: left;">
@@ -38,25 +38,26 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<h3 class="panel-title">Create New Team</h3>
+			    		<h3 class="panel-title">Edit Team</h3>
 			 			</div>
 			 			<div class="panel-body">
 			    		<form ng-submit="registerTeam()">
 		    				<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                			<input type="text" name="teamName" id="teamName" class="form-control input-sm" placeholder="Team Name"  ng-model="team.name">
+			                			<input type="text" name="teamname" id="{{teamId}}" class="form-control input-sm" placeholder="Team Name" ng-model="teamname">
 			    					</div>
 			    				</div>
 			    			</div>	
 			    			<div class="row">
 			    				<div class="col-xs-9 col-sm-9 col-md-9">
 			    					<div class="form-group">
-			                			<input type="number" min="0" max="35" name="teamNoOfPlayers" id="teamNoOfPlayers" class="form-control input-sm" placeholder="No of Players"  ng-model="team.noofplayers">
+			                			<input type="number" min="0" max="35" name="teamnoofplayers" id="teamnoofplayers" class="form-control input-sm" placeholder="No of Players" ng-model="teamnoofplayers">
 			    					</div>
 			    				</div>
 			    			</div>
-			    			<button type="submit" class="btn btn-info btn-block">Submit</button>	
+			    			<button type="submit" class="btn btn-info btn-block">Submit</button>  	
+			    			<button type="button" ng-click="draftPlayers()" ng-show="showDraftPlayers" class="btn btn-info btn-block" ng-hide="hideDraftPlayers">Draft/Edit Players</button>	
 			    		</form>
 			    	</div>
 	    		</div>

@@ -38,7 +38,7 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     $scope.getTeams = function() {
     	$scope.teams = [];
     	var divisionId = $scope.selectedDivision.id;
-    	UserService.getTeams(divisionId).then(
+    	UserService.getTeams(divisionId, "division").then(
 	        function(d) {
 	        	$scope.teams = [];
 	        	if(d === null || d.data.length === 0){
@@ -56,6 +56,9 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     };
     $scope.editSeason = function() {    	
 		$location.path("/admin/editseason").search('seasonId',$scope.selectedSeason.id);
+    };
+    $scope.editTeam = function() {    	
+		$location.path("/admin/editteam").search('teamId',$scope.selectedTeam.id);
     };
     $scope.createNewDivision = function() {
     	if(angular.isUndefined($scope.selectedSeason)){

@@ -22,6 +22,10 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'CreateNewTeam.html',
             controller : 'Team-Controller'
         })
+        $routeProvider.when('/admin/editteam', {
+            templateUrl : 'EditTeam.html',
+            controller : 'EditTeam-Controller'
+        })
         $routeProvider.when('/admin/draftplayers', {
             templateUrl : 'DraftPlayers.html',
             controller : 'DraftPlayers-Controller'

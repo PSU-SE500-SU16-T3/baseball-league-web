@@ -99,9 +99,10 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        getTeams: function(divisionId){
+        getTeams: function(divisionId, retrieveBy){
         	params = {
-        			'divisionId': divisionId,
+        			'retrieveId': divisionId,
+        			'retrieveBy': retrieveBy,
         			'callback': 'JSON_CALLBACK'
 			};
         	return $http({
