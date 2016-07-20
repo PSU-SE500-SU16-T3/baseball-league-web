@@ -358,7 +358,6 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  				console.error('Error while updating season. Please try again later.');
  				return $q.reject(dd);
  			});
-        }
-        
+        }        
     }; 
 }]);

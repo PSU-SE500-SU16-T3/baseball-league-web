@@ -32,7 +32,5 @@ app.config([ '$routeProvider', '$locationProvider',
         }).otherwise({
             redirectTo : 'index.html'
         });
-        
-        //$locationProvider.html5Mode(true); //Remove the '#' from URL.
     }
 ]);

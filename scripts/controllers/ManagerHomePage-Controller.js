@@ -64,7 +64,6 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     	}
     	$cookies.put('seasonId', $scope.selectedSeason.id);
 		$location.path("/admin/createnewdivision");
-    };
-    
+    };    
     $scope.getSeasons();
 }]);
