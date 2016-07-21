@@ -6,5 +6,9 @@ ProxyPass 	/baseball-league-web/getTeams 				http://localhost:8080/baseball-leag
 ProxyPass 	/baseball-league-web/getUnassignedPlayers	http://localhost:8080/baseball-league/team3/getUnassignedPlayers
 ProxyPass 	/baseball-league-web/getAssignedPlayers 	http://localhost:8080/baseball-league/team3/getAssignedPlayers
 ProxyPass 	/baseball-league-web/modifyPlayers 			http://localhost:8080/baseball-league/team3/modifyPlayers
-ProxyPass 	/baseball-league-web/register 				http://localhost:8080/baseball-league/team3/register
 ProxyPass 	/baseball-league-web/login 					http://localhost:8080/baseball-league/team3/login
+ProxyPass 	/baseball-league-web/registerSeason 		http://localhost:8080/baseball-league/team3/registerSeason
+ProxyPass 	/baseball-league-web/registerDivision 		http://localhost:8080/baseball-league/team3/registerDivision
+ProxyPass 	/baseball-league-web/registerTeam 			http://localhost:8080/baseball-league/team3/registerTeam
+ProxyPass 	/baseball-league-web/getSeasonDetail 		http://localhost:8080/baseball-league/team3/getSeasonDetail
+ProxyPass 	/baseball-league-web/updateSeason 			http://localhost:8080/baseball-league/team3/updateSeason
