@@ -1,10 +1,13 @@
-app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location', '$timeout', function($scope, UserService, $location, $timeout) {
 	$scope.assignedPlayers = [];
 	$scope.unassignedPlayers = [];
 	$scope.leagues = [];
 	$scope.seasons = [];
 	$scope.divisions = [];
 	$scope.teams = [];
+	$scope.teamId = $location.search().teamId;
+	$scope.teamName = $location.search().teamName;
+	$scope.teamNumPlayers = $location.search().teamNumPlayers;
     $scope.addPlayers = function() {
 		for(var i = $scope.unassignedPlayers.length - 1; i >= 0; i--){
 		    if($scope.unassignedPlayers[i].selected){
@@ -71,7 +74,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
     };
     $scope.getAssignedPlayers = function() {
     	$scope.assignedPlayers = [];
-    	UserService.getAssignedPlayers($scope.selectedTeam.id).then(
+    	UserService.getAssignedPlayers($scope.teamId).then(
 	        function(d) {
 	        	$scope.assignedPlayers = [];
 	        	angular.forEach(d.data,function(player,index){
@@ -80,14 +83,22 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', function($sc
 	        }
         );
     };
-    $scope.submit = function() {
-    	UserService.modifyPlayers($scope.selectedTeam.id ,$scope.assignedPlayers).then(
+    $scope.modifyPlayers = function() {
+    	if($scope.assignedPlayers.length > $scope.teamNumPlayers){
+    		$scope.error = "Assigned players cannot be greater than :"+$scope.teamNumPlayers;	     
+    		return;
+    	}
+    	
+    	UserService.modifyPlayers($scope.teamId ,$scope.assignedPlayers).then(
 	        function(d) {
-	        	if(d.data === true)
-	        		alert("Players added successfully.");
+	        	if(d.data === true){
+	        		$scope.displayMessage('success','Players assigned successfully.');
+	        	}
 	        }
         );
     };
-    $scope.getLeague();
+    
+    //$scope.getLeague();
+    $scope.getAssignedPlayers();
     $scope.getUnassignedPlayers();
 }]);

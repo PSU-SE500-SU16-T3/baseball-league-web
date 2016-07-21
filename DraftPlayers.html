@@ -41,11 +41,11 @@
 			    		<h3 class="panel-title">Draft/Edit Players</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form ng-submit="registerTeam()">
+			    		<form ng-submit="modifyPlayers()">
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                			<input type="text" name="teamName" id="teamName" disabled="disabled" class="form-control input-sm" placeholder="Team Name"  ng-model="team.name">
+			                			<input type="text" name="teamName" id="{{teamId}}" disabled="disabled" class="form-control input-sm" placeholder="Team Name"  ng-model="teamName">
 			    					</div>
 			    				</div>
 			    			</div>
@@ -54,110 +54,38 @@
 								    <fieldset>
 								    	<legend style="padding-left:15px;">Assigned Players</legend>
 								    	<div style="display: block; overflow: auto; height:150px;">
-								    	<table>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>							    		
-								    	</table>
+									    	<table>
+									    		<tr ng-repeat="assignedPlayer in assignedPlayers">
+									            	<td><input type="checkbox" ng-model="assignedPlayer.selected" value={{assignedPlayer.name}} id={{assignedPlayer.id}} />{{assignedPlayer.name}}</td>
+									            </tr>				    		
+									    	</table>
 								    	</div>
-								    		<!-- <div class="col-xs-6">
-				                				<input type="checkbox" id="1">
-				                			</div>
-				                			<div class="col-xs-6">
-				                				<input type="checkbox" id="2">
-				                			</div>
-				                			<div class="col-xs-6">
-				                				<input type="checkbox" id="3">
-				                			</div> -->
-								            <!-- <tr ng-repeat="assignedPlayer in assignedPlayers">
-								            	<td><input type="checkbox" ng-model="assignedPlayer.selected" value={{assignedPlayer.name}} id={{assignedPlayer.id}} />{{assignedPlayer.name}}</td>
-								            </tr> -->
 									</fieldset>
-									</div>
-									<div class="row" style="margin-top: 8px; margin-bottom: 4px;">
-										<div class="col-xs-6 col-sm-6 col-md-6" style="display:inline; text-align:right; vertical-align:middle;">
-					    					<div >
-					    						<input type="image" name="image" src="images/up.png">
-					    					</div>
-					    				</div>
-					    				<div class="col-xs-6 col-sm-6 col-md-6"  style="display:inline; text-align:LEFT; vertical-align:middle;">
-					    					<div>
-					    						<input type="image" name="image" src="images/down.png">
-					    					</div>
-					    				</div>
+								</div>
+								<div class="row" style="margin-top: 8px; margin-bottom: 4px;">
+									<div class="col-xs-6 col-sm-6 col-md-6" style="display:inline; text-align:right; vertical-align:middle;">
+				    					<div >
+				    						<button type="button" ng-click="addPlayers()"><img ng-src="images/up.png"/></button>
+				    					</div>
 				    				</div>
-									<div style="margin-bottom: 10px;">
+				    				<div class="col-xs-6 col-sm-6 col-md-6"  style="display:inline; text-align:LEFT; vertical-align:middle;">
+				    					<div>
+				    						<button type="button" ng-click="removePlayers()"><img ng-src="images/down.png"/></button>
+				    					</div>
+				    				</div>
+			    				</div>
+								<div style="margin-bottom: 10px;">
 									<fieldset>
 								    	<legend style="padding-left:15px; padding-top:10px;">Unassigned Players</legend>
 								    	<div style="display: block; overflow: auto; height:150px;">
-								    	<table>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="1">XYZ1</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="2">XYZ2</td>
-								    		</tr>
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>		
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>	
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>	
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>	
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>	
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>	
-								    		<tr>
-								    			<td class="col-xs-6"><input type="checkbox" id="3">XYZ3</td>
-								    		</tr>							    		
-								    	</table>
+									    	<table>
+									    		<tr ng-repeat="unassignedPlayer in unassignedPlayers">
+									            	<td id={{unassignedPlayer.id}}><input type="checkbox" ng-model="unassignedPlayer.selected" value={{unassignedPlayer.name}}  />{{unassignedPlayer.name}}</td>
+									            </tr>							    		
+									    	</table>
 								    	</div>
-								    		<!-- <div class="col-xs-6">
-				                				<input type="checkbox" id="1">
-				                			</div>
-				                			<div class="col-xs-6">
-				                				<input type="checkbox" id="2">
-				                			</div>
-				                			<div class="col-xs-6">
-				                				<input type="checkbox" id="3">
-				                			</div> -->
-								            <!-- <tr ng-repeat="assignedPlayer in assignedPlayers">
-								            	<td><input type="checkbox" ng-model="assignedPlayer.selected" value={{assignedPlayer.name}} id={{assignedPlayer.id}} />{{assignedPlayer.name}}</td>
-								            </tr> -->
 									</fieldset>
-									</div>							
+								</div>							
 			    			</div>
 			    			<button type="submit" class="btn btn-info btn-block">Submit</button>  		
 			    		</form>
@@ -165,8 +93,8 @@
 	    		</div>
     		</div>
     	</div>
-    	<div class="alert alert-danger" ng-show="error">{{error}}</div>
-    	<div class="alert alert-success" ng-show="success">{{success}}</div>
+    	<div class="alert alert-danger fadein fadeout" ng-show="errorMessage">{{error}}</div>
+    	<div class="alert alert-success fadein fadeout" ng-show="successMessage">{{success}}</div>
     </div>    
 </body>
 </html>

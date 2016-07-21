@@ -57,7 +57,11 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     $scope.editSeason = function() {    	
 		$location.path("/admin/editseason").search('seasonId',$scope.selectedSeason.id);
     };
-    $scope.editTeam = function() {    	
+    $scope.editTeam = function() {    
+    	if(angular.isUndefined($scope.selectedDivision)){
+    		$scope.error = "Please select division to proceed.";
+    		return;
+    	}
 		$location.path("/admin/editteam").search('teamId',$scope.selectedTeam.id);
     };
     $scope.createNewDivision = function() {
