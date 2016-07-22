@@ -12,3 +12,4 @@ ProxyPass 	/baseball-league-web/registerDivision 		http://localhost:8080/basebal
 ProxyPass 	/baseball-league-web/registerTeam 			http://localhost:8080/baseball-league/team3/registerTeam
 ProxyPass 	/baseball-league-web/getSeasonDetail 		http://localhost:8080/baseball-league/team3/getSeasonDetail
 ProxyPass 	/baseball-league-web/updateSeason 			http://localhost:8080/baseball-league/team3/updateSeason
+ProxyPass 	/baseball-league-web/addperson  			http://localhost:8080/baseball-league/team3/addperson
