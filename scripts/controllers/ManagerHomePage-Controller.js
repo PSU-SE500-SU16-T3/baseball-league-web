@@ -95,14 +95,20 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
         var modalInstance = $uibModal.open({
           animation: $scope.animationsEnabled,
           templateUrl: 'Social.html',
-          controller: function ($scope, $uibModalInstance) {	  
-          },
+          controller: function ($scope, $uibModalInstance) {
+
+
+        	  $scope.ok = function () {
+        	    $uibModalInstance.close();
+        	  };
+
+        	  $scope.cancel = function () {
+        	    $uibModalInstance.dismiss('cancel');
+        	  }},
           
           size: size,
           resolve: {
-            items: function () {
-              return $scope.items;
-            }
+            
           }
         });
 
