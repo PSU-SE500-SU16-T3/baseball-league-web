@@ -1,4 +1,6 @@
-app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies','$location', function($scope, UserService, $cookies, $location) {
+
+app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies','$location','$uibModal', '$log',
+                                             function($scope, UserService, $cookies, $location,$uibModal, $log) {
 	var loggedInUserDetails = $cookies.getObject("loggedInUserDetails");
 	$scope.seasons = [];
 	$scope.divisions = [];
@@ -86,6 +88,30 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
 		$location.path("/admin/createnewteam");
     }; 
     
-    
     $scope.getSeasons();
+    
+    $scope.open = function (size) {
+
+        var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'Social.html',
+          controller: function ($scope, $uibModalInstance) {	  
+          },
+          
+          size: size,
+          resolve: {
+            items: function () {
+              return $scope.items;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+      };
+    
 }]);
+
