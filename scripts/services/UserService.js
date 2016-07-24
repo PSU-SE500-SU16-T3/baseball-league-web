@@ -380,6 +380,26 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  				console.error('Error while updating season. Please try again later.');
  				return $q.reject(dd);
  			});
-        }        
+        },
+        postMessage: function(message, service){
+        	params = {
+        			'message': message,
+        			'service': service,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/postmessage',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while posting message');
+                 return $q.reject(dd);
+             });
+        }
     }; 
 }]);

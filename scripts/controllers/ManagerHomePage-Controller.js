@@ -90,8 +90,8 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     
     $scope.getSeasons();
     
-    $scope.open = function (size) {
-
+    $scope.open = function (service) {
+    	var serv=service;
         var modalInstance = $uibModal.open({
           animation: $scope.animationsEnabled,
           templateUrl: 'Social.html',
@@ -99,21 +99,30 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
 
 
         	  $scope.ok = function () {
-        	    $uibModalInstance.close();
+        		  UserService.postMessage($scope.message, serv).then(
+        				  function(d) {
+        					  $log.info($scope.message, serv)
+        					  $uibModalInstance.close();
+        					  }
+      		        ,
+      		       function(errResponse){
+      		        	$uibModalInstance.close();
+      		        	console.error('Error while Posting Message');
+      		        }
+      	        );    	
+        	    
         	  };
 
         	  $scope.cancel = function () {
         	    $uibModalInstance.dismiss('cancel');
         	  }},
           
-          size: size,
           resolve: {
             
           }
         });
 
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
+        modalInstance.result.then(function () {
         }, function () {
           $log.info('Modal dismissed at: ' + new Date());
         });
