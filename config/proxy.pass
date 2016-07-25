@@ -17,3 +17,4 @@ ProxyPass 	/baseball-league-web/getSeasonDetail 		http://localhost:8080/baseball
 ProxyPass 	/baseball-league-web/updateSeason 			http://localhost:8080/baseball-league/team3/updateSeason
 ProxyPass 	/baseball-league-web/addperson  			http://localhost:8080/baseball-league/team3/addperson
 ProxyPass 	/baseball-league-web/postmessage  			http://localhost:8080/baseball-league/team3/postmessage
+ProxyPass 	/baseball-league-web/setLeague  			http://localhost:8080/baseball-league/team3/setLeague
