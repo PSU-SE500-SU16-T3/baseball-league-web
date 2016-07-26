@@ -96,8 +96,6 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
           animation: $scope.animationsEnabled,
           templateUrl: 'Social.html',
           controller: function ($scope, $uibModalInstance) {
-
-
         	  $scope.ok = function () {
         		  UserService.postMessage($scope.message, serv).then(
         				  function(d) {
@@ -128,5 +126,40 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
         });
       };
     
+      $scope.openemail = function (service) {
+      	var serv=service;
+          var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'Contact.html',
+            controller: function ($scope, $uibModalInstance) {
+          	  $scope.ok = function () {
+          		  UserService.EmailMessage($scope.message, $scope.emails, serv).then(
+          				  function(d) {
+          					  $log.info($scope.message, $scope.emails, serv)
+          					  $uibModalInstance.close();
+          					  }
+        		        ,
+        		       function(errResponse){
+        		        	$uibModalInstance.close();
+        		        	console.error('Error while Posting Message');
+        		        }
+        	        );    	
+          	    
+          	  };
+
+          	  $scope.cancel = function () {
+          	    $uibModalInstance.dismiss('cancel');
+          	  }},
+            
+            resolve: {
+              
+            }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
 }]);
 
