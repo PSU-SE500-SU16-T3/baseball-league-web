@@ -1,6 +1,6 @@
 app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cookies){ 
 	var loggedInUserDetails = {};
-    return {         
+    return {
         getJson: function(username, password,passwordConf, email) {        	
         	params = {
         			'username': username,

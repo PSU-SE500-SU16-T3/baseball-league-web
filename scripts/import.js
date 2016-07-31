@@ -46,3 +46,8 @@ app.config([ '$routeProvider', '$locationProvider',
         });
     }
 ]);
+app.run(function($rootScope,$location) {
+    $rootScope.takeMeTo = function(url) {
+    	$location.path(url);
+    };
+});
