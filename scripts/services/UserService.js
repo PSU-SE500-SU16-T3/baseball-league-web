@@ -1,6 +1,6 @@
 app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cookies){ 
 	var loggedInUserDetails = {};
-    return {         
+    return {
         getJson: function(username, password,passwordConf, email) {        	
         	params = {
         			'username': username,
@@ -355,7 +355,26 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
              }).
              error(function (response) {
              	var dd = JSON.stringify(response);
-             	console.error('Error while fetching leagues');
+             	console.error('Error while fetching season detail');
+                 return $q.reject(dd);
+             });
+        },
+        getDivisionDetail: function(divisionId){
+        	params = {
+        			'divisionId': divisionId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getDivisionDetail',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching division detail');
                  return $q.reject(dd);
              });
         },
@@ -378,6 +397,29 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while updating season. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        updateDivision: function(divisionID, divisionname, divisionminage, divisionmaxage, divisionmaxnoofplayers){
+        	params = {
+        			'divisionID':divisionID,
+        			'divisionName':divisionname,
+        			'minAge':divisionminage,
+        			'maxAge':divisionmaxage,
+        			'maxNoOfPlayers':divisionmaxnoofplayers,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateDivision',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating division. Please try again later.');
  				return $q.reject(dd);
  			});
         },
