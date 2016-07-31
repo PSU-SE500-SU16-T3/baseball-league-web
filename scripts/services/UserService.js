@@ -421,6 +421,25 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
              	console.error('Error while emailing message');
                  return $q.reject(dd);
              });
+        },
+        submitLeague: function(leagueLocation) {        	
+        	params = {
+        			'leagueLocation': leagueLocation,
+        			'callback': 'JSON_CALLBACK'
+			};
+            return $http({
+            	url: '/baseball-league-web/submitLeague',
+            	method: 'JSONP',
+            	params: params
+			}).
+            success(function(response) {
+            	return response.data;
+            }).
+            error(function (response) {
+            	var dd = JSON.stringify(response);
+            	console.error('Error while creating league');
+                return $q.reject(dd);
+            });
         }
     }; 
 }]);
