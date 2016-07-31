@@ -119,8 +119,9 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        getUnassignedPlayers: function(){
+        getUnassignedPlayers: function(leagueId){
         	params = {
+        			'leagueId': leagueId,
         			'callback': 'JSON_CALLBACK'
 			};
         	return $http({
@@ -420,6 +421,27 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while updating division. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        updateTeam: function(teamId, teamname, teamnoofplayers){
+        	params = {
+        			'teamId':teamId,
+        			'teamName':teamname,
+        			'noOfPlayers':teamnoofplayers,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateTeam',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating team. Please try again later.');
  				return $q.reject(dd);
  			});
         },

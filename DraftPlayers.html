@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body ng-app="myApp" ng-controller="Team-Controller">	
+<body ng-app="myApp" ng-controller="DraftPlayers-Controller">	
 	<div>
 		<ul class="breadcrumb">
 		    <li><a href="" ng-click="takeMeTo('/admin/home')">Home</a></li>
@@ -90,8 +90,8 @@
 	    		</div>
     		</div>
     	</div>
-    	<div class="alert alert-danger fadein fadeout" ng-show="errorMessage">{{error}}</div>
-    	<div class="alert alert-success fadein fadeout" ng-show="successMessage">{{success}}</div>
+    	<div class="alert alert-danger" ng-show="error">{{error}}</div>
+    	<div class="alert alert-success" ng-show="success">{{success}}</div>
     </div>    
 </body>
 </html>
