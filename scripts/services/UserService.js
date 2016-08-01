@@ -119,6 +119,25 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
+        getGames: function(PersonID){
+        	params = {
+        			'PersonID': PersonID,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getGames',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching games');
+                 return $q.reject(dd);
+             });
+        },
         getUnassignedPlayers: function(){
         	params = {
         			'callback': 'JSON_CALLBACK'
@@ -422,7 +441,28 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        submitLeague: function(leagueLocation) {        	
+        getPerson: function(message, emails, service){
+        	params = {
+        			'message': message,
+        			'emails':emails,
+        			'service': service,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/postmessage',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while emailing message');
+                 return $q.reject(dd);
+             });
+        },
+        subgue: function(leagueLocation) {        	
         	params = {
         			'leagueLocation': leagueLocation,
         			'callback': 'JSON_CALLBACK'
