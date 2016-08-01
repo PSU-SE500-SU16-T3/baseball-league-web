@@ -52,8 +52,8 @@ app.controller('Register-Controller', ['$scope','$window', 'UserService',  funct
 	 $scope.addpayment = function () {
 	    	UserService.addpayment($scope.cardnumber, $scope.paymenttype, $scope.experation, $scope.cvc).then(
 		        function(d) {
-		        	var response = d.data;	
-		        	$window.location.href = '/baseball-league-web/index.html';
+		        	$window.location.href = '/baseball-league-web/FindLeague.html';
+		        	return false;
 		        },
 		        function(errResponse){
 		        	console.error('Error while fetching Currencies');
