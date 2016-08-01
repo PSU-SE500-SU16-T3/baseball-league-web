@@ -20,3 +20,4 @@ ProxyPass 	/baseball-league-web/postmessage  			http://localhost:8080/baseball-l
 ProxyPass 	/baseball-league-web/setLeague  			http://localhost:8080/baseball-league/team3/setLeague
 ProxyPass 	/baseball-league-web/submitLeague  			http://localhost:8080/baseball-league/team3/submitLeague
 ProxyPass 	/baseball-league-web/getGames 				http://localhost:8080/baseball-league/team3/getGames
+ProxyPass   /baseball-league-web/submitleagueByName     http://localhost:8080/baseball-league/team3/submitleagueByName

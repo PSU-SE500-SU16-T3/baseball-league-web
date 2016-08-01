@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <head>
@@ -21,11 +21,11 @@
         }
     </style>
 </head>
-<body ng-app="myApp" ng-controller="EditTeam-Controller">	
+<body ng-app="myApp" ng-controller="Division-Controller">	
 	<div>
 		<ul class="breadcrumb">
 		    <li><a href="" ng-click="takeMeTo('/admin/home')">Home</a></li>
-		    <li>Edit Team</li>
+		    <li>Edit Division</li>
 		</ul>
 	</div>
 	<div id="divPerson" class="container">
@@ -34,26 +34,39 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<h3 class="panel-title">Edit Team</h3>
+			    		<h3 class="panel-title">Edit Division</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form ng-submit="updateTeam()">
+			    		<form ng-submit="updateDivision()">
 		    				<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                			<input type="text" name="teamname" id="{{teamId}}" class="form-control input-sm" placeholder="Team Name" ng-model="teamname">
+			                			<input type="text" name="divisionName" id="{{divisionId}}" class="form-control input-sm" placeholder="Division Name"  ng-model="divisionname">
 			    					</div>
 			    				</div>
 			    			</div>	
 			    			<div class="row">
 			    				<div class="col-xs-9 col-sm-9 col-md-9">
 			    					<div class="form-group">
-			                			<input type="number" min="0" max="35" name="teamnoofplayers" id="teamnoofplayers" class="form-control input-sm" placeholder="No of Players" ng-model="teamnoofplayers">
+			                			<input type="number" min="0" max="35" name="divisionMinAge" id="divisionMinAge" class="form-control input-sm" placeholder="Division Min Age"  ng-model="divisionminage">
 			    					</div>
 			    				</div>
 			    			</div>
-			    			<button type="submit" class="btn btn-info btn-block">Submit</button>  	
-			    			<button type="button" ng-click="draftPlayers()" ng-show="showDraftPlayers" class="btn btn-info btn-block" ng-hide="hideDraftPlayers">Draft/Edit Players</button>	
+			    			<div class="row">
+			    				<div class="col-xs-9 col-sm-9 col-md-9">
+			    					<div class="form-group">
+			                			<input type="number" min="0" max="35"  name="divisionMaxAge" id="divisionMaxAge" class="form-control input-sm" placeholder="Division Max Age"  ng-model="divisionmaxage">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			<div class="row">
+			    				<div class="col-xs-9 col-sm-9 col-md-9">
+			    					<div class="form-group">
+			                			<input type="number" min="10" max="200" name="maxNumberOfPlayers" id="maxNumberOfPlayers" class="form-control input-sm" placeholder="Max Number Of Players"  ng-model="divisionmaxnoofplayers">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			<button type="submit" class="btn btn-info btn-block">Submit</button>  		
 			    		</form>
 			    	</div>
 	    		</div>

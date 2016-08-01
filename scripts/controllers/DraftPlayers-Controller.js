@@ -1,4 +1,4 @@
-app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location', '$timeout', function($scope, UserService, $location, $timeout) {
+app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location', '$timeout', '$cookies', function($scope, UserService, $location, $timeout, $cookies) {
 	$scope.assignedPlayers = [];
 	$scope.unassignedPlayers = [];
 	$scope.leagues = [];
@@ -8,6 +8,9 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location',
 	$scope.teamId = $location.search().teamId;
 	$scope.teamName = $location.search().teamName;
 	$scope.teamNumPlayers = $location.search().teamNumPlayers;
+	
+	var loggedInUserDetails = $cookies.getObject("loggedInUserDetails");	
+	
     $scope.addPlayers = function() {
 		for(var i = $scope.unassignedPlayers.length - 1; i >= 0; i--){
 		    if($scope.unassignedPlayers[i].selected){
@@ -63,7 +66,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location',
         );
     };
     $scope.getUnassignedPlayers = function () {
-    	UserService.getUnassignedPlayers().then(
+    	UserService.getUnassignedPlayers(loggedInUserDetails.body.leagueId).then(
 	        function(d) {
 	        	$scope.unassignedPlayers = [];
 	        	angular.forEach(d.data,function(player,index){
@@ -92,7 +95,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location',
     	UserService.modifyPlayers($scope.teamId ,$scope.assignedPlayers).then(
 	        function(d) {
 	        	if(d.data === true){
-	        		$scope.displayMessage('success','Players assigned successfully.');
+	        		$scope.success =  "Players assigned successfully.";
 	        	}
 	        }
         );

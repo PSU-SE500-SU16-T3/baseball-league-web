@@ -138,8 +138,9 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        getUnassignedPlayers: function(){
+        getUnassignedPlayers: function(leagueId){ 
         	params = {
+        			'leagueId': leagueId,
         			'callback': 'JSON_CALLBACK'
 			};
         	return $http({
@@ -374,7 +375,26 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
              }).
              error(function (response) {
              	var dd = JSON.stringify(response);
-             	console.error('Error while fetching leagues');
+             	console.error('Error while fetching season detail');
+                 return $q.reject(dd);
+             });
+        },
+        getDivisionDetail: function(divisionId){
+        	params = {
+        			'divisionId': divisionId,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getDivisionDetail',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching division detail');
                  return $q.reject(dd);
              });
         },
@@ -397,6 +417,50 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
  			error(function (response) {
  				var dd = JSON.stringify(response);
  				console.error('Error while updating season. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        updateDivision: function(divisionID, divisionname, divisionminage, divisionmaxage, divisionmaxnoofplayers){
+        	params = {
+        			'divisionID':divisionID,
+        			'divisionName':divisionname,
+        			'minAge':divisionminage,
+        			'maxAge':divisionmaxage,
+        			'maxNoOfPlayers':divisionmaxnoofplayers,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateDivision',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating division. Please try again later.');
+ 				return $q.reject(dd);
+ 			});
+        },
+        updateTeam: function(teamId, teamname, teamnoofplayers){
+        	params = {
+        			'teamId':teamId,
+        			'teamName':teamname,
+        			'noOfPlayers':teamnoofplayers,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/updateTeam',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+ 			success(function(response) {
+ 				return response;
+ 			}).
+ 			error(function (response) {
+ 				var dd = JSON.stringify(response);
+ 				console.error('Error while updating team. Please try again later.');
  				return $q.reject(dd);
  			});
         },
@@ -469,6 +533,25 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
 			};
             return $http({
             	url: '/baseball-league-web/submitLeague',
+            	method: 'JSONP',
+            	params: params
+			}).
+            success(function(response) {
+            	return response.data;
+            }).
+            error(function (response) {
+            	var dd = JSON.stringify(response);
+            	console.error('Error while creating league');
+                return $q.reject(dd);
+            });
+        },
+        submitleagueByName: function(leaguename) {        	
+        	params = {
+        			'leaguename': leaguename,
+        			'callback': 'JSON_CALLBACK'
+			};
+            return $http({
+            	url: '/baseball-league-web/submitleagueByName',
             	method: 'JSONP',
             	params: params
 			}).

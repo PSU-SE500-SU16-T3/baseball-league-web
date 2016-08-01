@@ -21,6 +21,10 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
 	             });
 	        }
         );
+    	
+    	/*if(!angular.isUndefined($location.search().seasonId)){
+    		$scope.selectedSeason.id = $location.search().seasonId;
+    	}*/
     };
     $scope.getDivisions = function() {
     	$scope.divisions = [];
@@ -58,6 +62,9 @@ app.controller('ManagerHomePage-Controller',['$scope', 'UserService', '$cookies'
     };
     $scope.editSeason = function() {    	
 		$location.path("/admin/editseason").search('seasonId',$scope.selectedSeason.id);
+    };
+    $scope.editDivision = function() {    	
+		$location.path("/admin/editdivision").search('divisionId',$scope.selectedDivision.id);
     };
     $scope.editTeam = function() {    
     	if(angular.isUndefined($scope.selectedDivision)){

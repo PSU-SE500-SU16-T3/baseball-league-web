@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAQBLZecTZNZbk9B9lfkis6sqVQZKYHg0I"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
-    <script src="resources/js/ui-bootstrap-tpls-2.0.0.min.js"></script>
-	<script src="scripts/import.js"></script>
-	<script src="scripts/services/UserService.js"></script>
-    <script src="scripts/controllers/LeagueCreation-Controller.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAQBLZecTZNZbk9B9lfkis6sqVQZKYHg0I"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
+<script src="resources/js/ui-bootstrap-tpls-2.0.0.min.js"></script>
+<script src="scripts/import.js"></script>
+<script src="scripts/services/UserService.js"></script>
+<script src="scripts/controllers/LeagueCreation-Controller.js"></script>
 
 <script>
 		var map;
@@ -152,81 +157,125 @@
 
 
 <head>
-    <title>Find League</title>
-    <style type="text/css">
-        .auto-style1 {
-            height: 58px;
-        }
-        .auto-style2 {
-            height: 234px;
-        }
-        #txtUsrName {
-            width: 238px;
-        }
-        #btnCreate {
-            margin-left: 111px;
-        }
-        #btnLogin {
-            margin-left: 0px;
-        }
-        .auto-style4 {
-            height: 100%;
-            width: 304px;
-        }
-        .auto-style5 {
-            width: 128px;
-            height:20%;
-            overflow: auto;
-        }
-		
-		tr td:last-child{
-		    width:1%;
-		    white-space:nowrap;
-		}
-		.wgtmsr{
-		 	width:100%; 
-		 	max-height: 100px;
-		 	white-space:nowrap;  
-		}
-		fieldset {
-		    border: 1px solid lightgrey;
-		    padding: 20px;
-		    border-radius: 8px;
-		    background: #f9f9f9;
-		    padding: 5px;
-		    vertical-align: top;
-		}
-		.my-overflow {
-		    overflow-y: auto;
-		    height: 100px;
-		    max-height: 100px;
-		}
-    </style>
+<title>Find League</title>
+<style type="text/css">
+.auto-style1 {
+	height: 58px;
+}
+
+.auto-style2 {
+	height: 234px;
+}
+
+#txtUsrName {
+	width: 238px;
+}
+
+#btnCreate {
+	margin-left: 111px;
+}
+
+#btnLogin {
+	margin-left: 0px;
+}
+
+.auto-style4 {
+	height: 100%;
+	width: 304px;
+}
+
+.auto-style5 {
+	width: 128px;
+	height: 20%;
+	overflow: auto;
+}
+
+tr td:last-child {
+	width: 1%;
+	white-space: nowrap;
+}
+
+.wgtmsr {
+	width: 100%;
+	max-height: 100px;
+	white-space: nowrap;
+}
+
+fieldset {
+	border: 1px solid lightgrey;
+	padding: 20px;
+	border-radius: 8px;
+	background: #f9f9f9;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.my-overflow {
+	overflow-y: auto;
+	height: 100px;
+	max-height: 100px;
+}
+</style>
 </head>
 
-<body ng-app="myApp" ng-controller="LeagueSubmit-Controller" ng-init="myVar='test'" onload="initialize()">
-    <table style="width: 100%;">
-        <tr>
-            <td class="auto-style1" style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball League App</td>
-        </tr>
-    </table>  
-	
-	<div> 
-		<input id="address" type="textbox" value="State College,PA">
-		<input type="button" value="Enter Address or Zip Code" onclick="codeAddress()">
-	</div>
-	
-	<div id="googleMap" style="width:500px; height:380px;"></div>
-	
-	<form ng-submit="submitleague()"><br>
-		<input type="submit"><br>
-			<br>
+<body ng-app="myApp" ng-controller="LeagueSubmit-Controller"
+	ng-init="myVar='test'" onload="initialize()">
+	<table style="width: 100%;">
 		<tr>
-			<td align="center" valign="bottom" colspan="2">{{confirmation}}</td>
-		</tr>				
-	</form>	
-	
+			<td class="auto-style1"
+				style="background-color: #0000FF; color: #FFFFFF; font-family: sans-serif; font-size: x-large; font-weight: 700; font-style: normal; font-variant: normal; text-transform: capitalize; text-align: left;">Baseball
+				League App</td>
+		</tr>
 
+		<tr>
+			<td class="auto-style2">
+				<table style="width: 100%; height: 100%">
+					<tr>
+						<td
+							style="text-align: center; font-family: Arial; font-size: x-large"
+							colspan="3">Register for a League</td>
+					</tr>
 
-</body>	
+					<tr>
+						<td style="height: 100%" colspan="3">
+							<fieldset>
+								<legend>Register by League Location</legend>
+								<div>
+									<input id="address" type="textbox" value="Enter Address">
+									<input type="button" value="Find League"
+										onclick="codeAddress()">
+								</div>
+
+								<div id="googleMap" style="width: 750px; height: 500px;"></div>
+
+								<form ng-submit="submitleague()">
+									<br> <input type="submit" value="Register"><br>
+									<br>
+								</form>
+
+								<div align="center" valign="bottom" colspan="2">{{confirmation}}</div>
+							</fieldset>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="height: 100%" colspan="3">
+							<fieldset>
+								<legend>Register by League Name</legend><br>
+								
+								<form ng-submit="submitleagueByName()">
+									<div>
+										<select ng-model="currentState" ng-options="league as league.name for league in leagues"></select>
+										<button id="testBtn" class="btn btn-default" ng-disabled="currentState === 'Select'">Register</button><br><br>
+									</div>
+								</form>	
+								<div align="center" valign="bottom" colspan="2">{{confirmation2}}</div>						
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
 </html>

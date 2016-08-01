@@ -6,6 +6,10 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'ManagerDashboard.html',
             controller : 'ManagerHomePage-Controller'
         })
+        /*$routeProvider.when('/player/home', {
+            templateUrl : 'PlayerDashboard.html',
+            controller : 'PlayerHomePage-Controller' 
+        })*/
         $routeProvider.when('/admin/createnewseason', {
             templateUrl : 'CreateNewSeason.html',
             controller : 'Season-Controller'
@@ -16,6 +20,10 @@ app.config([ '$routeProvider', '$locationProvider',
         })
         $routeProvider.when('/admin/createnewdivision', {
             templateUrl : 'CreateNewDivision.html',
+            controller : 'Division-Controller'
+        })
+        $routeProvider.when('/admin/editdivision', {
+            templateUrl : 'EditDivision.html',
             controller : 'Division-Controller'
         })
         $routeProvider.when('/admin/createnewteam', {
