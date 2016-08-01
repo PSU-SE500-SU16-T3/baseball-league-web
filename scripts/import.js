@@ -8,7 +8,7 @@ app.config([ '$routeProvider', '$locationProvider',
         })
         /*$routeProvider.when('/player/home', {
             templateUrl : 'PlayerDashboard.html',
-            controller : 'PlayerHomePage-Controller'
+            controller : 'PlayerHomePage-Controller' 
         })*/
         $routeProvider.when('/admin/createnewseason', {
             templateUrl : 'CreateNewSeason.html',

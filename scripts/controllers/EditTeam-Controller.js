@@ -34,5 +34,5 @@ app.controller('EditTeam-Controller', ['$scope', 'UserService','$location','$coo
 	$scope.draftPlayers = function() {
     	$location.path("/admin/draftplayers").search('teamId',$scope.teamId).search('teamName',$scope.teamname).search('teamNumPlayers',$scope.teamnoofplayers);
     };
-	$scope.getTeams();
+	$scope.getTeams(); 
 }]);

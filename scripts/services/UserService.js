@@ -119,7 +119,7 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        getUnassignedPlayers: function(leagueId){
+        getUnassignedPlayers: function(leagueId){ 
         	params = {
         			'leagueId': leagueId,
         			'callback': 'JSON_CALLBACK'

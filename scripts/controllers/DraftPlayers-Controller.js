@@ -9,8 +9,7 @@ app.controller('DraftPlayers-Controller', ['$scope', 'UserService', '$location',
 	$scope.teamName = $location.search().teamName;
 	$scope.teamNumPlayers = $location.search().teamNumPlayers;
 	
-	var loggedInUserDetails = $cookies.getObject("loggedInUserDetails");
-	
+	var loggedInUserDetails = $cookies.getObject("loggedInUserDetails");	
 	
     $scope.addPlayers = function() {
 		for(var i = $scope.unassignedPlayers.length - 1; i >= 0; i--){
