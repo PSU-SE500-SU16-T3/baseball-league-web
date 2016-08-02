@@ -1,10 +1,11 @@
 //var app = angular.module('myApp', []);
 
-app.controller('LeagueCreation-Controller', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('LeagueCreation-Controller', ['$scope', 'UserService', '$window', function($scope, UserService, $window) {
     $scope.myFunc = function () {
     	UserService.setLeague($scope.leagueName, $scope.leagueLocation).then(
 	        function(d) {
 	        	var response = d.data;
+	        	$window.location.href = '/baseball-league-web/ManagerDashboard.html';
 	            $scope.confirmation = response.leagueName + " successfully created";
 	        },
 	        function(errResponse){
@@ -30,6 +31,7 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', f
     	UserService.submitLeague($window.placename).then(
 	        function(d) {
 	        	var response = d.data;
+	        	$window.location.href = '/baseball-league-web/PlayerHome.html';
 	            $scope.confirmation = " You successfully registered to" + response.leagueName;
 	        },
 	        function(errResponse){
@@ -41,6 +43,7 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', f
     	UserService.submitleagueByName($scope.currentState.name).then(
 	        function(d) {
 	        	var response = d.data;
+	        	$window.location.href = '/baseball-league-web/PlayerHome.html';
 	            $scope.confirmation2 = " You successfully registered to" + response.leagueName;
 	        },
 	        function(errResponse){
