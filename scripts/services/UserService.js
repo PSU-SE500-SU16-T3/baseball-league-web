@@ -121,7 +121,7 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
         },
         getGames: function(PersonID){
         	params = {
-        			'PersonID': PersonID,
+        			'personID': PersonID,
         			'callback': 'JSON_CALLBACK'
 			};
         	return $http({
@@ -505,15 +505,13 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        getPerson: function(message, emails, service){
+        getPerson: function(personID){
         	params = {
-        			'message': message,
-        			'emails':emails,
-        			'service': service,
+        			'personID': personID,
         			'callback': 'JSON_CALLBACK'
 			};
         	return $http({
-             	url: '/baseball-league-web/postmessage',
+             	url: '/baseball-league-web/getPersonInfo',
              	method: 'JSONP',
              	params: params
  			}).
@@ -521,8 +519,9 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
              	return response;
              }).
              error(function (response) {
+            	 
              	var dd = JSON.stringify(response);
-             	console.error('Error while emailing message');
+             	console.error('Error Getting User Info');
                  return $q.reject(dd);
              });
         },

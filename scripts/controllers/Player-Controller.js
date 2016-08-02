@@ -59,7 +59,7 @@ app.controller('Player-Controller',['$scope', 'UserService', '$cookies','$locati
     };
     $scope.getGames = function() {
     	$scope.games = [];
-    	UserService.getGames(10017).then(
+    	UserService.getGames(loggedInUserDetails.body.player.personID).then(
     			function(d) {
     	        	$scope.games = [];
     	        	if(d === null || d.data.length === 0){
@@ -75,10 +75,17 @@ app.controller('Player-Controller',['$scope', 'UserService', '$cookies','$locati
     			);
     };
     $scope.getPersonInfo = function () {
-    	UserService.getPerson(10017).then(
+    	
+    	UserService.getPerson(loggedInUserDetails.body.player.personID).then(
 	        function(d) {
 	        	var response = d.data;
-	            
+	            $scope.firstname= response.firstName;
+	            $scope.username = response.username;
+	            $scope.lastname= response.lastName;
+	            $scope.email = response.email;
+	            $scope.dob= response.dateOfBirth;
+	            $scope.mobilephone=response.mobilephoneNum;
+	            $scope.homephone=response.homephoneNum;
 	        },
 	        function(errResponse){
 	        	console.error('Error while fetching Currencies');
