@@ -50,8 +50,17 @@ app.config([ '$routeProvider', '$locationProvider',
         });
     }
 ]);
-app.run(function($rootScope,$location) {
+app.run(function($rootScope,$location,$cookies) {
     $rootScope.takeMeTo = function(url) {
     	$location.path(url);
+    };
+    $rootScope.signOut = function() {
+    	$cookies.remove("loggedInUserDetails");
+    	$cookies.remove("seasonId");
+    	$cookies.remove("divisionId");
+    	$location.path("/");
+    };
+    $rootScope.showMe = function() {
+    	return $location.path();
     };
 });
