@@ -5,9 +5,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
     <script src="resources/js/ui-bootstrap-tpls-2.0.0.min.js"></script>
+    
 <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="http://code.jquery.com/jquery.js"></script>
 <head>
+<script src="resources/js/widgets.js"></script>
 <style>
     .panel.date {
     margin: 0px;
@@ -124,22 +126,22 @@
 			<div class="col-md-5 col-lg-5 well" style="margin-left:20px" ng-init="getGames()"> <h2>Upcoming Games</h2>
 				<div class="alert alert-danger col-md-12 col-lg-12 " ng-hide="showgames" ng-show="showerror" >{{error}}</div>
 				<ul class="media-list" ng-hide="showerror" >
-                        <li class="media" ng-repeat="game in games">
+                        <li class="media" ng-repeat="game in games | orderBy:'gameDay':reverse">
                             <div class="media-left" >
                                 <div class="panel panel-danger text-center date">
                                     <div class="panel-heading month">
                                         <span class="panel-title strong">
-                                            Mar
+                                            {{game.gameMonth}}
                                         </span>
                                     </div>
                                     <div class="panel-body day text-danger">
-                                        23
+                                        {{game.gameDay}}
                                     </div>
                                 </div>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    {{}}
+                                    {{game.fieldname}}
                                 </h4>
                                 <p>
                                     {{}}
@@ -147,14 +149,13 @@
                             </div>
                         </li>
                     </ul>
-			</div>			
-			<div class="col-md-3 col-lg-3 well" style="margin-left:30px" > <h2>League Communications</h2>
-				
-			</div>
+			</div>		
 		</div>
 	</div>
 </div>
+
 <script src="scripts/import.js"></script>
+
     <script src="scripts/services/UserService.js"></script>
 	<script src="scripts/controllers/Player-Controller.js"></script>
 </body>

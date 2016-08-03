@@ -58,6 +58,8 @@ app.controller('Player-Controller',['$scope', 'UserService', '$cookies','$locati
         );
     };
     $scope.getGames = function() {
+    	var months = [ "Jan", "Feb", "Mar", "Apr", "May", "June",
+    	               "July", "Aug", "Sep", "Oct", "Nov", "Dec" ];
     	$scope.games = [];
     	UserService.getGames(loggedInUserDetails.body.player.personID).then(
     			function(d) {
@@ -68,8 +70,12 @@ app.controller('Player-Controller',['$scope', 'UserService', '$cookies','$locati
     	        		$scope.error = "No Games Scheduled Yet";
     	        		return
     	        	}
+    	        	
     	        	angular.forEach(d.data,function(game,index){
-    	        		$scope.games.push({id:game.GameID,gamedate:game.gamedate,filedname:game.fieldname});
+    	        		var arr = game.gameTime.split("-");
+    	        		var month = months[parseInt(arr[1])-1];
+    	        		var gameday = arr[2]
+    	        		$scope.games.push({id:game.GameID,gamedate:game.gameTime, gameMonth: month, gameDay: gameday, fieldname:game.fieldName});
     	            });
     	        }
     			);
