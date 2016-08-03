@@ -525,7 +525,7 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
-        subgue: function(leagueLocation) {        	
+        submitLeague: function(leagueLocation) {        	
         	params = {
         			'leagueLocation': leagueLocation,
         			'callback': 'JSON_CALLBACK'
