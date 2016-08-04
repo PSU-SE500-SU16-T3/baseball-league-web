@@ -42,6 +42,14 @@ app.config([ '$routeProvider', '$locationProvider',
             templateUrl : 'Register.html',
             controller : 'Register-Controller'
         })
+        $routeProvider.when('/register/LeagueCreation', {
+            templateUrl : 'LeagueCreation.html',
+            controller : 'LeagueCreation-Controller'
+        })
+        $routeProvider.when('/register/FindLeague', {
+            templateUrl : 'FindLeague.html',
+            controller : 'LeagueSubmit-Controller'
+        })
         $routeProvider.when('/', {
             templateUrl : 'login.html',
             controller : 'Login-Controller'

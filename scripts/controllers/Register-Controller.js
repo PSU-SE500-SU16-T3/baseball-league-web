@@ -1,4 +1,4 @@
-app.controller('Register-Controller', ['$scope','$window', 'UserService',  function($scope,$window, UserService) {
+app.controller('Register-Controller', ['$scope','$location', 'UserService',  function($scope,$location, UserService) {
 	$scope.person =true;
 	$scope.info =false;
 	$scope.payment=false;
@@ -38,9 +38,9 @@ app.controller('Register-Controller', ['$scope','$window', 'UserService',  funct
 		        		$scope.payment=true;
 		        		$scope.league =false;
 		        	} else if ($scope.role == "Manager"){
-		        		$window.location.href = '/baseball-league-web/LeagueCreation.html';
+		        		$location.path("/register/LeagueCreation");
 		        	} else{
-		        		$window.location.href = '/baseball-league-web/index.html';
+		        		$location.path("/");
 		        	}
 		        	var response = d.data;		            
 		        },
@@ -52,7 +52,7 @@ app.controller('Register-Controller', ['$scope','$window', 'UserService',  funct
 	 $scope.addpayment = function () {
 	    	UserService.addpayment($scope.cardnumber, $scope.paymenttype, $scope.experation, $scope.cvc).then(
 		        function(d) {
-		        	$window.location.href = '/baseball-league-web/FindLeague.html';
+		        	$location.path("/register/FindLeague");
 		        	return false;
 		        },
 		        function(errResponse){
