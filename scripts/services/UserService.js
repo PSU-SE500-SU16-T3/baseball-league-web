@@ -138,6 +138,44 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
                  return $q.reject(dd);
              });
         },
+        getFields: function(leagueID){
+        	params = {
+        			'leagueID': leagueID,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getFields',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching Fields');
+                 return $q.reject(dd);
+             });
+        },
+        getRefs: function(leagueID){
+        	params = {
+        			'leagueID': leagueID,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/getRefs',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while fetching Refs');
+                 return $q.reject(dd);
+             });
+        },
         getUnassignedPlayers: function(leagueId){ 
         	params = {
         			'leagueId': leagueId,
@@ -502,6 +540,29 @@ app.factory('UserService', ['$http', '$q', '$cookies', function($http, $q, $cook
              error(function (response) {
              	var dd = JSON.stringify(response);
              	console.error('Error while emailing message');
+                 return $q.reject(dd);
+             });
+        },
+        postGame: function(fieldID, RefID, Team1ID, Team2ID, gamedate){
+        	params = {
+        			'fieldID': fieldID,
+        			'team1':Team1ID,
+        			'team2':Team2ID,
+        			'gamedate':gamedate,
+        			'refID': RefID,
+        			'callback': 'JSON_CALLBACK'
+			};
+        	return $http({
+             	url: '/baseball-league-web/postgame',
+             	method: 'JSONP',
+             	params: params
+ 			}).
+             success(function(response) {
+             	return response;
+             }).
+             error(function (response) {
+             	var dd = JSON.stringify(response);
+             	console.error('Error while posting Game');
                  return $q.reject(dd);
              });
         },

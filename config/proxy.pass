@@ -22,3 +22,6 @@ ProxyPass 	/baseball-league-web/submitLeague  			http://localhost:8080/baseball-
 ProxyPass 	/baseball-league-web/getGames 				http://localhost:8080/baseball-league/team3/getGames
 ProxyPass   /baseball-league-web/submitleagueByName     http://localhost:8080/baseball-league/team3/submitleagueByName
 ProxyPass   /baseball-league-web/getPersonInfo     		http://localhost:8080/baseball-league/team3/getPersonInfo
+ProxyPass   /baseball-league-web/getFields     			http://localhost:8080/baseball-league/team3/getFields
+ProxyPass   /baseball-league-web/getRefs     			http://localhost:8080/baseball-league/team3/getRefs
+ProxyPass   /baseball-league-web/postGame     			http://localhost:8080/baseball-league/team3/postGame

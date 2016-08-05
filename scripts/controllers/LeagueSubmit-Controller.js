@@ -28,7 +28,7 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', '
 		
 		google.maps.event.addListener(map,'rightclick',function(event){
 			map.setCenter(event.latLng)
-			clearResults(markers)
+			$scope.clearResults(markers)
 			var request = {
 					location: event.latLng,
 					radius: 8047,
@@ -63,36 +63,8 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', '
 			placeInfo.open(map,this);
 			placename = placeInfo.getContent(place.name);
 			
-		});
-		
-		
-		google.maps.event.addListener(marker,'dblclick',function(){
-			placeInfo.setContent(place.name);
-			placeInfo.open(map,this);
-			
-			placename = placeInfo.getContent(place.name);
-			confirmOK = confirm("Set your league location as:" +placename+ "?");
-			
-			if (confirmOK == true)
-				{
-				alert("You have selected:" +placename+ "league");
-				updateData(placename);
-				}
-			else
-				{
-				alert("Boohoo");
-				}	
-			
-			
-		});
-		    
-			
+		});	
 		return marker;
-	};
-	$scope.updateData = function (placename) {
-		
-	    alert("InsideUpdateData" +placename);
-	    submitleague(placename);	
 	};
 	
 	$scope.clearResults = function (markers) {
@@ -113,13 +85,13 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', '
 				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location});
-					clearResults(markers)
+					$scope.clearResults(markers)
 				var request = {
 						location: results[0].geometry.location,
 						radius: 8047,
 						types: ['park']
 						};
-				service.nearbySearch(request, callback);
+				service.nearbySearch(request, $scope.callback);
 			}
 			else
 			{
@@ -130,7 +102,6 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', '
 	
     $scope.leagueLocation = $window.placename;
     $scope.currentState = 'Select';
-    //$scope.leagues = ["League1", "League2", "League3"];
     $scope.leagues = UserService.getLeague().then(
 	        function(d) {
 	        	$scope.leagues = [];
@@ -139,7 +110,7 @@ app.controller('LeagueSubmit-Controller', ['$scope', 'UserService', '$window', '
 	             });
 	        });
 	$scope.submitleague = function () {
-    	UserService.submitLeague($window.placename).then(
+    	UserService.submitLeague(placename).then(
 	        function(d) {
 	        	var response = d.data;
 	        	$location.path("/");
